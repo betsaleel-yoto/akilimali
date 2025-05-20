@@ -17,9 +17,7 @@ menuClose.addEventListener('click', () => {
 });
 
 const popup = document.getElementById('popup');
-const btnOpen = document.getElementById('open-popup');
 
-btnOpen.addEventListener('click', () => popup.classList.add('visible'));
 
 const contactSection = document.getElementById('contact');
 const obs = new IntersectionObserver(([e]) => {

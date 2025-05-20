@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire de Paiement</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .payment-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    .payment-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .payment-options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .payment-options button {
+      flex: 1;
+      padding: 10px;
+      margin: 0 5px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .payment-options button.active {
+      background: #0056b3;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .hidden {
+      display: none;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Paiement</h2>
+    <div class="payment-options">
+      <button id="mobile-money-btn" type="button" class="active">Mobile Money</button>
+      <button id="card-btn" type="button">Carte Bancaire</button>
+    </div>
+    <form id="payment-form">
+      <!-- Mobile Money Fields -->
+      <div id="mobile-money-fields">
+        <div class="form-group">
+          <label for="mobile-number">Numéro de Téléphone</label>
+          <input type="tel" id="mobile-number" name="mobile-number" placeholder="Ex: 07XXXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label for="network">Opérateur Mobile</label>
+          <select id="network" name="network" required>
+            <option value="">-- Choisir un opérateur --</option>
+            <option value="orange">Orange</option>
+            <option value="mtn">MTN</option>
+            <option value="moov">Moov</option>
+          </select>
+        </div>
+      </div>
+      <!-- Card Payment Fields -->
+      <div id="card-fields" class="hidden">
+        <div class="form-group">
+          <label for="card-holder">Nom du Titulaire</label>
+          <input type="text" id="card-holder" name="card-holder" placeholder="Nom sur la carte">
+        </div>
+        <div class="form-group">
+          <label for="card-number">Numéro de Carte</label>
+          <input type="text" id="card-number" name="card-number" placeholder="XXXX-XXXX-XXXX-XXXX">
+        </div>
+        <div class="form-group">
+          <label for="expiry">Date d'Expiration</label>
+          <input type="text" id="expiry" name="expiry" placeholder="MM/AA">
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" placeholder="XXX">
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Payer</button>
+    </form>
+  </div>
+  
+  <script type="importmap">
+  {
+    "imports": {
+      "lodash": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.js"
+    }
+  }
+  </script>
+  
+  <script type="module">
+    // Elements de sélection
+    const mobileMoneyBtn = document.getElementById('mobile-money-btn');
+    const cardBtn = document.getElementById('card-btn');
+    const mobileMoneyFields = document.getElementById('mobile-money-fields');
+    const cardFields = document.getElementById('card-fields');
+    
+    // Gestion du clic pour Mobile Money
+    mobileMoneyBtn.addEventListener('click', () => {
+      mobileMoneyBtn.classList.add('active');
+      cardBtn.classList.remove('active');
+      mobileMoneyFields.classList.remove('hidden');
+      cardFields.classList.add('hidden');
+      // Définir les attributs requis pour Mobile Money
+      document.getElementById('mobile-number').required = true;
+      document.getElementById('network').required = true;
+      // Retirer l'attribut required pour les informations de carte
+      document.getElementById('card-holder').required = false;
+      document.getElementById('card-number').required = false;
+      document.getElementById('expiry').required = false;
+      document.getElementById('cvv').required = false;
+    });
+    
+    // Gestion du clic pour Carte Bancaire
+    cardBtn.addEventListener('click', () => {
+      cardBtn.classList.add('active');
+      mobileMoneyBtn.classList.remove('active');
+      cardFields.classList.remove('hidden');
+      mobileMoneyFields.classList.add('hidden');
+      // Définir les attributs requis pour Carte Bancaire
+      document.getElementById('card-holder').required = true;
+      document.getElementById('card-number').required = true;
+      document.getElementById('expiry').required = true;
+      document.getElementById('cvv').required = true;
+      // Retirer l'attribut required pour Mobile Money
+      document.getElementById('mobile-number').required = false;
+      document.getElementById('network').required = false;
+    });
+    
+    // Soumission du formulaire
+    const paymentForm = document.getElementById('payment-form');
+    paymentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Simulation du traitement du paiement
+      alert("Votre paiement est en cours de traitement...");
+      // Exemple d'utilisation de lodash
+      // const message = _.join(["Paiement", "effectué"], " ");
+      // console.log(message);
+    });
+  </script>
+</body>
+</html>
+
