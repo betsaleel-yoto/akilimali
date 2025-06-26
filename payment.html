@@ -4,26 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulaire de Paiement</title>
+  <!-- Ajout de la police Google Montserrat pour une typographie moderne -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Mise à jour du thème et amélioration du design */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #003366, #001F3F);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
     }
     .payment-container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       width: 400px;
     }
     .payment-container h2 {
       text-align: center;
       margin-bottom: 20px;
+      color: #003366;
+      border-bottom: 2px solid #003366;
+      padding-bottom: 10px;
     }
     .payment-options {
       display: flex;
@@ -35,14 +43,18 @@
       padding: 10px;
       margin: 0 5px;
       border: none;
-      background: #007bff;
+      background: #001F3F;
       color: #fff;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .payment-options button:hover {
+      transform: scale(1.05);
     }
     .payment-options button.active {
-      background: #0056b3;
+      background: #003366;
+      transform: scale(1.05);
     }
     .form-group {
       margin-bottom: 15px;
@@ -51,12 +63,18 @@
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
+      color: #003366;
     }
     input, select {
       width: 100%;
       padding: 8px;
-      border: 1px solid #ccc;
+      border: 1px solid #001F3F;
       border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus {
+      border-color: #003366;
+      outline: none;
     }
     .hidden {
       display: none;
@@ -64,16 +82,18 @@
     .submit-btn {
       width: 100%;
       padding: 12px;
-      background: #28a745;
+      background: #191970;
       border: none;
       color: #fff;
       font-size: 16px;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
     .submit-btn:hover {
-      background: #218838;
+      background: #1c1c7b;
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -96,8 +116,8 @@
           <select id="network" name="network" required>
             <option value="">-- Choisir un opérateur --</option>
             <option value="orange">Orange</option>
-            <option value="mtn">Airtel</option>
-            <option value="moov">Vodacom</option>
+            <option value="mtn">Airtelmoney</option>
+            <option value="moov">M-Pesa</option>
           </select>
         </div>
       </div>
@@ -184,4 +204,3 @@
   </script>
 </body>
 </html>
-

@@ -1,8 +1,8 @@
 /* Premium CSS Styling – Look and feel d’un site ultra premium */
 
 :root {
-  --primary-color: #2f178d;
-  --primary-hover: #2a157f;  /* Couleur légèrement plus foncée pour le hover */
+  --primary-color: #191970;
+  --primary-hover: #001F3F;  /* Couleur légèrement plus foncée pour le hover */
   --secondary-color: #ffffff;
   --accent-color: #f7f7f7;
   --text-color: #333333;
