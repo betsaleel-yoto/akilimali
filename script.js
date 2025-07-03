@@ -106,10 +106,10 @@ const statsObserver = new IntersectionObserver((entries) => {
 if (statsSection) statsObserver.observe(statsSection);
 
 // New handler for the newsletter form submission
-function handleNewsletter(e) {
-  e.preventDefault();
-  const newsletterEmail = document.getElementById('newsletter-email').value;
-  console.log("Newsletter subscription:", { newsletterEmail });
-  alert("Merci pour votre inscription !");
-  e.target.reset();
-}
+// function handleNewsletter(e) {
+//   e.preventDefault();
+//   const newsletterEmail = document.getElementById('newsletter-email').value;
+//   console.log("Newsletter subscription:", { newsletterEmail });
+//   alert("Merci pour votre inscription !");
+//   e.target.reset();
+// }

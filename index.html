@@ -165,8 +165,9 @@
   <section id="newsletter" data-aos="fade-up">
     <h2>Restez Connecté</h2>
     <p>Inscrivez-vous pour recevoir nos actualités et offres.</p>
-    <form id="newsletter-form" onsubmit="handleNewsletter(event)">
-      <input type="email" id="newsletter-email" placeholder="Votre email" required>
+    <form   action="https://formspree.io/f/mvgryqdj"
+    method="POST">
+      <input type="email" name="email" id="newsletter-email" placeholder="Votre email" required>
       <button type="submit">S'abonner</button>
     </form>
   </section>
@@ -199,7 +200,8 @@
     <div class="popup-content" data-aos="zoom-in">
       <button id="popup-close" aria-label="Fermer la pop-up">X</button>
       <h3>Réserver une consultation</h3>
-      <form onsubmit="handleForm(event)">
+      <form  action="https://formspree.io/f/xyzjvpbd"
+      method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <label for="whatsapp">WhatsApp:</label>
