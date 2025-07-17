@@ -17,9 +17,11 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  width:100%;
   background: linear-gradient(180deg, var(--secondary-color) 0%, #f0f0f0 100%);
   color: var(--text-color);
   line-height: 1.6;
+  padding:0;
 }
 
 /* Titres en élégante Playfair Display */
@@ -443,10 +445,70 @@ nav ul li a:hover::after {
 
 /* Responsive About Section for Small Screens */
 @media (max-width: 768px) {
+  
+  #about {
+    padding: 40px 15px;
+    position:relative;
+    right:2rem;
+    overflow:hidden;
+  }
+
+  #about h2 {
+    width:80%;
+    font-size: 1.5em;
+    text-align: center;
+    position:relative;
+    left:4.2rem;
+  }
+
   #about .about-content {
+    width:80%;
     flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+    position:relative;
+    left:4.2rem;
+  }
+
+  #about .about-content .coach-photo {
+    width: 150px !important;
+    height: 150px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  #about .about-content .coach-photo img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  #about .about-content .details {
+    width: 100%;
     text-align: center;
   }
+
+  #about .about-content .details ul {
+    font-size: 1em;
+  }
+
+  #about .about-content .details ul li {
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  #about .about-content .details ul li::before {
+    left: 0;
+  }
+
+  #about .about-content .details p,
+  #about .about-content .details a {
+    font-size: 0.95em;
+    word-break: break-word;
+  }
+  
 }
 
 /* Ultra Mega Professional Footer */
@@ -701,12 +763,12 @@ form button:hover {
     width: 80%;
     max-width: 300px;
     height: 60rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: white;
     backdrop-filter: blur(100px);
     z-index: 2000;
     padding: 20px;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-    background-color: #2a157f18;
+    background-color: white;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -791,7 +853,7 @@ body.loaded .intro-text {
 #newsletter input[type="email"] {
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 50px 0 0 50px;
+  border-radius: 50px 50px 50px 50px;
   font-size: 1em;
   outline: none;
   min-width: 250px;
@@ -802,7 +864,7 @@ body.loaded .intro-text {
   border: none;
   background: var(--primary-color);
   color: var(--secondary-color);
-  border-radius: 0 50px 50px 0;
+  border-radius: 50px 50px 50px 50px;
   cursor: pointer;
   font-size: 1em;
   transition: background var(--transition);
@@ -812,3 +874,4 @@ body.loaded .intro-text {
 #newsletter button:hover {
   background: var(--primary-hover);
 }
+
