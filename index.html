@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>AKILIMALI KASIDIKA LEBON – Coach & Expert</title>
 
   <!-- Fonts -->
@@ -1089,6 +1089,252 @@
     }
 
     /* ══════════════════════════════════════
+       GALERIE ÉVÉNEMENTS (NOUVELLE SECTION)
+       Style cohérent avec l'existant
+    ══════════════════════════════════════ */
+    #gallery {
+      padding: 10rem 0;
+      background: var(--navy-mid);
+    }
+
+    .gallery-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      cursor: pointer;
+      transition: all 0.5s var(--ease-expo);
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 6s ease;
+      filter: brightness(0.9) contrast(1.05);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(10,13,30,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-tag {
+      font-family: var(--font-accent);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(10,13,30,0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 2px;
+      border-left: 2px solid var(--gold);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-expo);
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 4px;
+      border: 1px solid rgba(201,168,76,0.2);
+      box-shadow: 0 0 60px rgba(0,0,0,0.8);
+      transform: scale(0.95);
+      transition: transform 0.4s var(--ease-expo);
+    }
+
+    .lightbox.open .lightbox-img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: rgba(19,24,40,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .lightbox-close:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: rotate(90deg);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(19,24,40,0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--navy-border);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .lightbox-nav:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    .lightbox-prev {
+      left: 2rem;
+    }
+
+    .lightbox-next {
+      right: 2rem;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      background: rgba(10,13,30,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    /* Responsive gallery */
+    @media (max-width: 1024px) {
+      .gallery-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .lightbox-prev { left: 1rem; }
+      .lightbox-next { right: 1rem; }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        background: rgba(19,24,40,0.8);
+      }
+      .lightbox-prev { left: 0.8rem; }
+      .lightbox-next { right: 0.8rem; }
+      .lightbox-counter {
+        bottom: 1.2rem;
+        font-size: 0.7rem;
+        padding: 0.4rem 1rem;
+      }
+    }
+
+    /* ══════════════════════════════════════
        CONTACT / CTA
     ══════════════════════════════════════ */
     #contact {
@@ -1739,6 +1985,7 @@
         <li><a href="#about">À Propos</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#testimonials">Témoignages</a></li>
+        <li><a href="#gallery">Événements</a></li>
         <li><a href="#contact" class="nav-cta">Réserver</a></li>
       </ul>
     </nav>
@@ -1752,6 +1999,7 @@
       <li><a href="#about" class="mobile-link">À Propos</a></li>
       <li><a href="#clients" class="mobile-link">Clients</a></li>
       <li><a href="#testimonials" class="mobile-link">Témoignages</a></li>
+      <li><a href="#gallery" class="mobile-link">Événements</a></li>
       <li><a href="#contact" class="mobile-link">Contact</a></li>
     </ul>
   </div>
@@ -2089,9 +2337,119 @@
             <source src="https://res.cloudinary.com/dlkow85gp/video/upload/v1751880536/VID-20250706-WA0000_nunf0u.mp4" type="video/mp4">
           </video>
         </div>
+        <div class="video-card reveal reveal-delay-3">
+          <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
+          <video playsinline controls>
+            <source src="./WhatsApp Video 2026-03-30 at 13.10.00 (1).mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card reveal reveal-delay-3">
+          <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
+          <video playsinline controls>
+            <source src="./WhatsApp Video 2026-03-30 at 13.10.00.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card reveal reveal-delay-3">
+          <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
+          <video playsinline controls>
+            <source src="./WhatsApp Video 2026-03-30 at 13.10.01.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ════════════ GALERIE ÉVÉNEMENTS ════════════ -->
+  <section id="gallery">
+    <div class="section-container">
+      <div class="gallery-header">
+        <div>
+          <div class="section-label reveal">
+            <span class="section-label-line"></span>
+            <span>05 — Événements</span>
+          </div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Galerie des<br>
+            <em>moments forts</em>
+          </h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-2">
+          Retour en images sur les événements marquants, conférences et ateliers animés par le coach. Cliquez sur une photo pour l'agrandir.
+        </p>
+      </div>
+
+      <!-- Grille de photos d'événements -->
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal" data-index="0">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1750850807/IMG-20250621-WA0007_ogoo1i.jpg" alt="Événement 1">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Conférence</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-index="1">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1747734262/koxiejpuupro2aotyvk5.jpg" alt="Événement 2">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Atelier</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="2">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1750850808/IMG-20250620-WA0003_jaurta.jpg" alt="Événement 3">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="3">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099368/WhatsApp_Image_2026-04-10_at_10.40.18_wvyvfo.jpg" alt="Événement 4">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+<div class="gallery-item reveal reveal-delay-2" data-index="4">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099368/WhatsApp_Image_2026-04-10_at_10.40.17_jnfkuy.jpg" alt="Événement 5">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-index="5">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099368/WhatsApp_Image_2026-04-10_at_11.12.30_y3pate.jpg" alt="Événement 6">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+         <div class="gallery-item reveal reveal-delay-2" data-index="6">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099368/WhatsApp_Image_2026-04-10_at_10.40.22_r3nrds.jpg" alt="Événement 7">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+         <div class="gallery-item reveal reveal-delay-2" data-index="7">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099368/WhatsApp_Image_2026-04-10_at_10.56.37_whxecm.jpg" alt="Événement 8">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-index="8">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099369/WhatsApp_Image_2026-04-10_at_10.40.21_auuboj.jpg" alt="Événement 9">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-index="9">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099369/WhatsApp_Image_2026-04-10_at_10.56.36_bzuazc.jpg" alt="Événement 10">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-index="10">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099369/WhatsApp_Image_2026-04-10_at_10.40.20_yhgpgr.jpg" alt="Événement 11">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2" data-index="11">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1776099370/WhatsApp_Image_2026-04-10_at_10.28.05_o7qp20.jpg" alt="Événement 12">
+          <div class="gallery-item-overlay"><span class="gallery-item-tag">Séminaire</span></div>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 8</div>
+    </div>
+  </div>
 
   <!-- ════════════ CONTACT / CTA ════════════ -->
   <section id="contact">
@@ -2100,7 +2458,7 @@
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">
           <span class="section-label-line"></span>
-          <span>05 — Contact</span>
+          <span>06 — Contact</span>
           <span class="section-label-line"></span>
         </div>
         <h2 class="section-heading reveal reveal-delay-1">
@@ -2151,6 +2509,7 @@
             <a href="#services">Services</a>
             <a href="#about">À Propos</a>
             <a href="#testimonials">Témoignages</a>
+            <a href="#gallery">Événements</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
@@ -2196,11 +2555,11 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
     /* ══════════ PRELOADER ══════════ */
     const preloader = document.getElementById('preloader');
     window.addEventListener('load', () => {
-      // Wait at least 2.4s for the branded experience, then fade out
       setTimeout(() => {
         preloader.classList.add('hide');
         setTimeout(() => { preloader.style.display = 'none'; }, 600);
@@ -2220,7 +2579,7 @@
       requestAnimationFrame(animateCursor);
     }
     animateCursor();
-    document.querySelectorAll('a, button, .service-card, .video-card').forEach(el => {
+    document.querySelectorAll('a, button, .service-card, .video-card, .gallery-item').forEach(el => {
       el.addEventListener('mouseenter', () => {
         if (dot) { dot.style.width = '12px'; dot.style.height = '12px'; }
         if (ring) { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; }
@@ -2294,13 +2653,86 @@
     }, { threshold: 0.5 });
     counters.forEach(c => countObs.observe(c));
 
-
     /* ══════════ SMOOTH SCROLL ══════════ */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
         if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
       });
+    });
+
+    /* ══════════ GALERIE LIGHTBOX ══════════ */
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    let currentIndex = 0;
+    const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightboxImage();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxImage() {
+      lightboxImg.src = images[currentIndex];
+      lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateLightboxImage();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateLightboxImage();
+    }
+
+    galleryItems.forEach((item, idx) => {
+      item.addEventListener('click', () => openLightbox(idx));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxNext.addEventListener('click', nextImage);
+    lightboxPrev.addEventListener('click', prevImage);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    lightbox.addEventListener('touchend', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) nextImage();
+        else prevImage();
+      }
     });
   </script>
 </body>
