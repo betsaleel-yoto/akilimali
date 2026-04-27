@@ -1172,6 +1172,253 @@
       border-left: 2px solid var(--gold);
     }
 
+    /* ══════════════════════════════════════
+       CERTIFICATS
+    ══════════════════════════════════════ */
+    #certificates {
+      padding: 10rem 0;
+      background: var(--navy);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .certificates-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .certificate-card {
+      appearance: none;
+      border: 1px solid var(--navy-border);
+      background: var(--navy-card);
+      padding: 1rem;
+      text-align: left;
+      border-radius: 4px;
+      transition: transform 0.45s var(--ease-expo), border-color 0.45s var(--ease-expo), box-shadow 0.45s var(--ease-expo);
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .certificate-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 58%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 20px 42px rgba(0,0,0,0.45);
+    }
+
+    .certificate-card:hover::before {
+      opacity: 1;
+    }
+
+    .certificate-preview {
+      position: relative;
+      min-height: clamp(260px, 30vw, 390px);
+      border: 1px solid rgba(201,168,76,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%),
+        #0B1020;
+      overflow: hidden;
+    }
+
+    .certificate-canvas,
+    .certificate-modal-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .certificate-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1rem;
+      background: linear-gradient(180deg, rgba(10,13,30,0) 0%, rgba(10,13,30,0.88) 100%);
+      display: flex;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .certificate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.4rem 0.8rem;
+      background: rgba(10,13,30,0.68);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 2px;
+    }
+
+    .certificate-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+
+    .certificate-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.25;
+    }
+
+    .certificate-note {
+      font-family: var(--font-accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .certificate-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100001;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease-expo);
+      padding: 2rem;
+    }
+
+    .certificate-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .certificate-modal-dialog {
+      position: relative;
+      width: min(1100px, 100%);
+    }
+
+    .certificate-modal-stage {
+      width: 100%;
+      height: min(78vh, 760px);
+      background: #070A16;
+      border: 1px solid rgba(201,168,76,0.18);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+      overflow: hidden;
+    }
+
+    .certificate-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(10,13,30,0.72);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: none;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .certificate-modal-close:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: rotate(90deg);
+    }
+
+    .certificate-modal-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .certificate-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--cream);
+    }
+
+    .certificate-modal-protection {
+      font-family: var(--font-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.45rem 0.9rem;
+      border: 1px solid rgba(201,168,76,0.28);
+      border-radius: 2px;
+      background: rgba(201,168,76,0.08);
+    }
+
+    .protection-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 2rem;
+      transform: translate(-50%, 18px);
+      z-index: 100010;
+      background: rgba(10,13,30,0.92);
+      color: var(--cream);
+      border: 1px solid rgba(201,168,76,0.28);
+      padding: 0.85rem 1.15rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+    }
+
+    .protection-toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .protected-media,
+    .protected-media * {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
     /* Lightbox */
     .lightbox {
       position: fixed;
@@ -1302,6 +1549,13 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+      .certificates-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1310,6 +1564,33 @@
     }
 
     @media (max-width: 768px) {
+      .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .certificate-card {
+        padding: 0.85rem;
+      }
+      .certificate-preview {
+        min-height: 290px;
+      }
+      .certificate-meta,
+      .certificate-modal-caption {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .certificate-modal {
+        padding: 1rem;
+      }
+      .certificate-modal-stage {
+        height: min(72vh, 600px);
+      }
+      .certificate-modal-close {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 42px;
+        height: 42px;
+      }
       .gallery-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -1983,6 +2264,7 @@
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#about">À Propos</a></li>
+        <li><a href="#certificates">Certificats</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#testimonials">Témoignages</a></li>
         <li><a href="#gallery">Événements</a></li>
@@ -1997,6 +2279,7 @@
     <ul class="mobile-nav-links">
       <li><a href="#services" class="mobile-link">Services</a></li>
       <li><a href="#about" class="mobile-link">À Propos</a></li>
+      <li><a href="#certificates" class="mobile-link">Certificats</a></li>
       <li><a href="#clients" class="mobile-link">Clients</a></li>
       <li><a href="#testimonials" class="mobile-link">Témoignages</a></li>
       <li><a href="#gallery" class="mobile-link">Événements</a></li>
@@ -2230,7 +2513,7 @@
           <div class="about-contact reveal reveal-delay-5" style="margin-top:2rem;">
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
-              <div class="contact-item-text">+243 834 715 292/<div>
+              <div class="contact-item-text">+243 834 715 292/</div>
             </div>
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
@@ -2244,13 +2527,153 @@
     </div>
   </section>
 
+  <!-- ════════════ CERTIFICATS ════════════ -->
+  <section id="certificates">
+    <div class="section-container">
+      <div class="certificates-header">
+        <div>
+          <div class="section-label reveal">
+            <span class="section-label-line"></span>
+            <span>03 — Certificats</span>
+          </div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Les <em>certificats</em><br>
+            du coach Lebon
+          </h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-2">
+          Retrouvez ici les certificats du coach Lebon dans une galerie protégée. Chaque visuel est présenté avec un filigrane et une consultation sécurisée pour limiter la copie non autorisée.
+        </p>
+      </div>
+
+      <div class="certificates-grid">
+        <button type="button" class="certificate-card reveal protected-media" data-cert-src="./certificat/1.png" data-cert-title="Certificat 01" aria-label="Ouvrir le certificat 1">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 01</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-1 protected-media" data-cert-src="./certificat/2.png" data-cert-title="Certificat 02" aria-label="Ouvrir le certificat 2">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 02</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-2 protected-media" data-cert-src="./certificat/3.png" data-cert-title="Certificat 03" aria-label="Ouvrir le certificat 3">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 03</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal protected-media" data-cert-src="./certificat/4.png" data-cert-title="Certificat 04" aria-label="Ouvrir le certificat 4">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 04</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-1 protected-media" data-cert-src="./certificat/5.png" data-cert-title="Certificat 05" aria-label="Ouvrir le certificat 5">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 05</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-2 protected-media" data-cert-src="./certificat/6.png" data-cert-title="Certificat 06" aria-label="Ouvrir le certificat 6">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 06</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal protected-media" data-cert-src="./certificat/7.png" data-cert-title="Certificat 07" aria-label="Ouvrir le certificat 7">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 07</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-1 protected-media" data-cert-src="./certificat/8.png" data-cert-title="Certificat 08" aria-label="Ouvrir le certificat 8">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 08</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+
+        <button type="button" class="certificate-card reveal reveal-delay-2 protected-media" data-cert-src="./certificat/9.jpeg" data-cert-title="Certificat 09" aria-label="Ouvrir le certificat 9">
+          <div class="certificate-preview">
+            <canvas class="certificate-canvas" aria-hidden="true"></canvas>
+            <div class="certificate-overlay">
+              <span class="certificate-badge"><i class="fas fa-shield-alt"></i> Visualisation protégée</span>
+            </div>
+          </div>
+          <div class="certificate-meta">
+            <span class="certificate-title">Certificat 09</span>
+            <span class="certificate-note">Cliquer pour agrandir</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════ CLIENTS ════════════ -->
   <section id="clients">
     <div class="section-container">
       <div class="clients-header">
         <div class="section-label reveal" style="justify-content:center;">
           <span class="section-label-line"></span>
-          <span>03 — Clients</span>
+          <span>04 — Clients</span>
           <span class="section-label-line"></span>
         </div>
         <h2 class="section-heading reveal reveal-delay-1" style="text-align:center;">Entreprises <em>Accompagnées</em></h2>
@@ -2301,7 +2724,7 @@
         <div>
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>04 — Témoignages</span>
+            <span>05 — Témoignages</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Ce que disent<br>
@@ -2366,7 +2789,7 @@
         <div>
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>05 — Événements</span>
+            <span>06 — Événements</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Galerie des<br>
@@ -2447,7 +2870,20 @@
       <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
       <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
       <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
-      <div class="lightbox-counter" id="lightboxCounter">1 / 8</div>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 12</div>
+    </div>
+  </div>
+
+  <div class="certificate-modal" id="certificateModal" aria-hidden="true">
+    <div class="certificate-modal-dialog">
+      <button class="certificate-modal-close" id="certificateModalClose" aria-label="Fermer les certificats"><i class="fas fa-times"></i></button>
+      <div class="certificate-modal-stage protected-media">
+        <canvas id="certificateModalCanvas" class="certificate-modal-canvas"></canvas>
+      </div>
+      <div class="certificate-modal-caption">
+        <span class="certificate-modal-title" id="certificateModalTitle">Certificat</span>
+        <span class="certificate-modal-protection">Consultation protégée</span>
+      </div>
     </div>
   </div>
 
@@ -2458,7 +2894,7 @@
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">
           <span class="section-label-line"></span>
-          <span>06 — Contact</span>
+          <span>07 — Contact</span>
           <span class="section-label-line"></span>
         </div>
         <h2 class="section-heading reveal reveal-delay-1">
@@ -2508,6 +2944,7 @@
           <div class="footer-links">
             <a href="#services">Services</a>
             <a href="#about">À Propos</a>
+            <a href="#certificates">Certificats</a>
             <a href="#testimonials">Témoignages</a>
             <a href="#gallery">Événements</a>
             <a href="#contact">Contact</a>
@@ -2555,6 +2992,8 @@
     </div>
   </div>
 
+  <div class="protection-toast" id="protectionToast" aria-live="polite"></div>
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ══════════ PRELOADER ══════════ */
@@ -2579,7 +3018,7 @@
       requestAnimationFrame(animateCursor);
     }
     animateCursor();
-    document.querySelectorAll('a, button, .service-card, .video-card, .gallery-item').forEach(el => {
+    document.querySelectorAll('a, button, .service-card, .video-card, .gallery-item, .certificate-card, .certificate-modal-close').forEach(el => {
       el.addEventListener('mouseenter', () => {
         if (dot) { dot.style.width = '12px'; dot.style.height = '12px'; }
         if (ring) { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; }
@@ -2661,6 +3100,244 @@
       });
     });
 
+    /* ══════════ PROTECTION UI ══════════ */
+    const protectionToast = document.getElementById('protectionToast');
+    let protectionToastTimer = null;
+
+    function showProtectionToast(message) {
+      if (!protectionToast) return;
+      protectionToast.textContent = message;
+      protectionToast.classList.add('show');
+      clearTimeout(protectionToastTimer);
+      protectionToastTimer = setTimeout(() => {
+        protectionToast.classList.remove('show');
+      }, 1800);
+    }
+
+    /* ══════════ CERTIFICATS PROTÉGÉS ══════════ */
+    const certificateCards = Array.from(document.querySelectorAll('.certificate-card'));
+    const certificateModal = document.getElementById('certificateModal');
+    const certificateModalCanvas = document.getElementById('certificateModalCanvas');
+    const certificateModalTitle = document.getElementById('certificateModalTitle');
+    const certificateModalClose = document.getElementById('certificateModalClose');
+    const certificateImageCache = new Map();
+    let activeCertificateCard = null;
+    let certificateResizeTimer = null;
+
+    function loadCertificateImage(src) {
+      if (certificateImageCache.has(src)) {
+        return Promise.resolve(certificateImageCache.get(src));
+      }
+
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = () => {
+          certificateImageCache.set(src, img);
+          resolve(img);
+        };
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    function drawProtectedCertificate(canvas, image, title, fullSize = false) {
+      if (!canvas || !image) return;
+
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = rect.width;
+      const height = rect.height;
+      canvas.width = Math.max(1, Math.round(width * dpr));
+      canvas.height = Math.max(1, Math.round(height * dpr));
+
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      ctx.fillStyle = '#0B1020';
+      ctx.fillRect(0, 0, width, height);
+
+      const padding = fullSize ? 28 : 16;
+      const scale = Math.min((width - padding * 2) / image.width, (height - padding * 2) / image.height);
+      const drawWidth = image.width * scale;
+      const drawHeight = image.height * scale;
+      const offsetX = (width - drawWidth) / 2;
+      const offsetY = (height - drawHeight) / 2;
+
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      ctx.fillRect(offsetX, offsetY, drawWidth, drawHeight);
+
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.32)';
+      ctx.shadowBlur = fullSize ? 28 : 18;
+      ctx.shadowOffsetY = fullSize ? 16 : 10;
+      ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+      ctx.restore();
+
+      const tint = ctx.createLinearGradient(0, offsetY, 0, offsetY + drawHeight);
+      tint.addColorStop(0, 'rgba(255,255,255,0.03)');
+      tint.addColorStop(1, 'rgba(10,13,30,0.08)');
+      ctx.fillStyle = tint;
+      ctx.fillRect(offsetX, offsetY, drawWidth, drawHeight);
+
+      ctx.strokeStyle = 'rgba(201,168,76,0.24)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(offsetX + 0.5, offsetY + 0.5, drawWidth - 1, drawHeight - 1);
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(offsetX, offsetY, drawWidth, drawHeight);
+      ctx.clip();
+      ctx.translate(width / 2, height / 2);
+      ctx.rotate(-Math.PI / 6);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = fullSize ? '700 20px "Syne", sans-serif' : '700 12px "Syne", sans-serif';
+      ctx.fillStyle = fullSize ? 'rgba(245,230,192,0.18)' : 'rgba(245,230,192,0.16)';
+
+      const watermarkText = 'COACH LEBON • CONSULTATION PROTEGEE';
+      const rangeX = width * 1.6;
+      const rangeY = height * 1.6;
+      const stepX = fullSize ? 300 : 190;
+      const stepY = fullSize ? 120 : 84;
+
+      for (let y = -rangeY; y < rangeY; y += stepY) {
+        for (let x = -rangeX; x < rangeX; x += stepX) {
+          ctx.fillText(watermarkText, x, y);
+        }
+      }
+      ctx.restore();
+
+      const ribbonHeight = fullSize ? 42 : 30;
+      const ribbonWidth = Math.min(drawWidth * 0.72, fullSize ? 360 : 220);
+      ctx.fillStyle = 'rgba(10,13,30,0.78)';
+      ctx.fillRect(offsetX, offsetY + drawHeight - ribbonHeight, ribbonWidth, ribbonHeight);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#C9A84C';
+      ctx.font = fullSize ? '700 16px "Syne", sans-serif' : '700 11px "Syne", sans-serif';
+      ctx.fillText(title.toUpperCase(), offsetX + (fullSize ? 18 : 12), offsetY + drawHeight - ribbonHeight / 2);
+    }
+
+    async function renderCertificateCard(card) {
+      const src = card.dataset.certSrc;
+      const title = card.dataset.certTitle || 'Certificat';
+      const canvas = card.querySelector('.certificate-canvas');
+
+      if (!src || !canvas) return;
+
+      try {
+        const image = await loadCertificateImage(src);
+        drawProtectedCertificate(canvas, image, title);
+      } catch (error) {
+        console.error('Impossible de charger le certificat :', src, error);
+      }
+    }
+
+    async function renderAllCertificates() {
+      await Promise.all(certificateCards.map(renderCertificateCard));
+    }
+
+    async function renderActiveCertificate() {
+      if (!activeCertificateCard || !certificateModalCanvas) return;
+      const src = activeCertificateCard.dataset.certSrc;
+      const title = activeCertificateCard.dataset.certTitle || 'Certificat';
+
+      try {
+        const image = await loadCertificateImage(src);
+        drawProtectedCertificate(certificateModalCanvas, image, title, true);
+      } catch (error) {
+        console.error("Impossible d'ouvrir le certificat :", src, error);
+      }
+    }
+
+    async function openCertificateModal(card) {
+      activeCertificateCard = card;
+      if (certificateModalTitle) {
+        certificateModalTitle.textContent = card.dataset.certTitle || 'Certificat';
+      }
+      certificateModal.classList.add('open');
+      certificateModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      await renderActiveCertificate();
+    }
+
+    function closeCertificateModal() {
+      certificateModal.classList.remove('open');
+      certificateModal.setAttribute('aria-hidden', 'true');
+      activeCertificateCard = null;
+      if (!lightbox.classList.contains('open')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    certificateCards.forEach(card => {
+      card.addEventListener('click', () => openCertificateModal(card));
+    });
+
+    certificateModalClose?.addEventListener('click', closeCertificateModal);
+    certificateModal?.addEventListener('click', (e) => {
+      if (e.target === certificateModal) closeCertificateModal();
+    });
+
+    window.addEventListener('load', renderAllCertificates);
+    window.addEventListener('resize', () => {
+      clearTimeout(certificateResizeTimer);
+      certificateResizeTimer = setTimeout(() => {
+        renderAllCertificates();
+        if (certificateModal.classList.contains('open')) {
+          renderActiveCertificate();
+        }
+      }, 120);
+    });
+
+    /* ══════════ ANTI-TÉLÉCHARGEMENT ══════════ */
+    document.querySelectorAll('img, canvas, video').forEach(media => {
+      media.setAttribute('draggable', 'false');
+    });
+
+    document.addEventListener('contextmenu', (e) => {
+      if (!(e.target instanceof Element)) return;
+      if (e.target.closest('img, canvas, video, .protected-media')) {
+        e.preventDefault();
+        showProtectionToast('Téléchargement désactivé sur ce visuel.');
+      }
+    });
+
+    document.addEventListener('dragstart', (e) => {
+      if (!(e.target instanceof Element)) return;
+      if (e.target.closest('img, canvas, video, .protected-media')) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('keydown', async (e) => {
+      const key = e.key.toLowerCase();
+      const blockedShortcut =
+        e.key === 'PrintScreen' ||
+        e.key === 'F12' ||
+        ((e.ctrlKey || e.metaKey) && ['s', 'u', 'p'].includes(key)) ||
+        ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(key));
+
+      if (!blockedShortcut) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.key === 'PrintScreen') {
+        try {
+          await navigator.clipboard.writeText('');
+        } catch (error) {
+          /* no-op */
+        }
+      }
+
+      showProtectionToast('Cette action est désactivée sur ce site.');
+    });
+
     /* ══════════ GALERIE LIGHTBOX ══════════ */
     const galleryItems = document.querySelectorAll('.gallery-item');
     const lightbox = document.getElementById('lightbox');
@@ -2687,7 +3364,9 @@
 
     function closeLightbox() {
       lightbox.classList.remove('open');
-      document.body.style.overflow = '';
+      if (!certificateModal.classList.contains('open')) {
+        document.body.style.overflow = '';
+      }
     }
 
     function nextImage() {
@@ -2714,6 +3393,10 @@
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && certificateModal.classList.contains('open')) {
+        closeCertificateModal();
+        return;
+      }
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') nextImage();
