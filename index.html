@@ -1892,6 +1892,127 @@
     .modal-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
 
     /* ══════════════════════════════════════
+       INTENT POPUP
+    ══════════════════════════════════════ */
+    .intent-popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 4900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .intent-popup-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .intent-popup-box {
+      position: relative;
+      width: min(92vw, 640px);
+      background:
+        linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.01) 100%),
+        var(--navy-card);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 6px;
+      padding: 3rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+      transform: translateY(24px) scale(0.98);
+      transition: transform 0.45s var(--ease-expo);
+    }
+    .intent-popup-backdrop.open .intent-popup-box {
+      transform: translateY(0) scale(1);
+    }
+    .intent-popup-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--navy-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+    .intent-popup-close:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    .intent-popup-kicker {
+      font-family: var(--font-accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .intent-popup-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 600;
+      line-height: 1.08;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      max-width: 12ch;
+    }
+    .intent-popup-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+    .intent-popup-highlight {
+      padding: 1rem 1.2rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,168,76,0.06);
+      color: var(--cream);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+    .intent-popup-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .intent-popup-cta {
+      border: none;
+      cursor: none;
+      appearance: none;
+    }
+    .intent-popup-secondary {
+      min-height: 56px;
+      padding: 0 1.5rem;
+      border: 1px solid var(--navy-border);
+      background: transparent;
+      color: var(--text-main);
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+    .intent-popup-secondary:hover {
+      border-color: rgba(201,168,76,0.35);
+      color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+
+    /* ══════════════════════════════════════
        MOBILE NAV OVERLAY
     ══════════════════════════════════════ */
     .mobile-nav-overlay {
@@ -2200,6 +2321,23 @@
         border-radius: 8px 8px 0 0;
         width: 100%;
         max-width: 100%;
+      }
+      .intent-popup-backdrop { padding: 1rem; align-items: flex-end; }
+      .intent-popup-box {
+        width: 100%;
+        padding: 2rem 1.2rem;
+        border-radius: 12px 12px 0 0;
+      }
+      .intent-popup-title { max-width: 100%; }
+      .intent-popup-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .intent-popup-cta,
+      .intent-popup-secondary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
       }
 
       /* ── Mobile nav links ── */
@@ -2905,7 +3043,7 @@
           Réservez une consultation et commençons à construire ensemble votre succès dès aujourd'hui.
         </p>
         <div class="contact-actions reveal reveal-delay-3">
-          <a href="./payment.html" class="btn-primary" id="open-popup">
+          <a href="#contact" class="btn-primary" id="open-popup">
             <span><i class="fas fa-calendar-alt" style="margin-right:.6rem;"></i>Réserver maintenant</span>
           </a>
           <a href="/cdn-cgi/l/email-protection#8ae9e5e4feebe9fecaebe1e3e6e3e7ebe6e3e9e5e4f9ffe6fee3e4eda4e9e5e7" class="btn-ghost">
@@ -2925,7 +3063,7 @@
           <h3>Restez Connecté</h3>
           <p>Recevez nos actualités, conseils et offres exclusives.</p>
         </div>
-        <form class="newsletter-form reveal reveal-delay-2" action="https://formspree.io/f/mvgryqdj" method="POST">
+        <form class="newsletter-form reveal reveal-delay-2" id="newsletter-form" action="https://formspree.io/f/mvgryqdj" method="POST">
           <input type="email" name="email" placeholder="Votre adresse email" required>
           <button type="submit">S'abonner</button>
         </form>
@@ -2978,7 +3116,7 @@
       </div>
       <h3 class="modal-title">Réserver une session</h3>
       <p class="modal-subtitle">Entrez vos coordonnées et nous vous recontacterons sous 24h.</p>
-      <form class="modal-form" action="https://formspree.io/f/xyzjvpbd" method="POST">
+      <form class="modal-form" id="primary-booking-form" action="https://formspree.io/f/xyzjvpbd" method="POST">
         <div class="form-group">
           <label for="modal-email">Adresse Email</label>
           <input type="email" id="modal-email" name="email" placeholder="votre@email.com" required>
@@ -2989,6 +3127,28 @@
         </div>
         <button type="submit" class="modal-submit">Confirmer la réservation</button>
       </form>
+    </div>
+  </div>
+
+  <div class="intent-popup-backdrop" id="intentPopup" aria-hidden="true">
+    <div class="intent-popup-box" role="dialog" aria-modal="true" aria-labelledby="intentPopupTitle" aria-describedby="intentPopupDescription">
+      <button class="intent-popup-close" id="intentPopupClose" aria-label="Fermer cette fenêtre">✕</button>
+      <div class="section-label" style="margin-bottom:1rem;">
+        <span class="section-label-line"></span>
+        <span>Orientation</span>
+      </div>
+      <p class="intent-popup-kicker">Vous explorez nos contenus</p>
+      <h3 class="intent-popup-title" id="intentPopupTitle">Transformons cette visite en une prise de contact utile.</h3>
+      <p class="intent-popup-text" id="intentPopupDescription">
+        Nous accompagnons les entrepreneurs, dirigeants et entreprises dans la structuration, la croissance et la transformation de leurs projets. L'action la plus utile maintenant est de réserver une consultation stratégique afin que nous étudiions votre besoin et vous orientions rapidement.
+      </p>
+      <div class="intent-popup-highlight">
+        Action recommandée : remplir le formulaire principal de réservation pour être recontacté sous 24h.
+      </div>
+      <div class="intent-popup-actions">
+        <button type="button" class="btn-primary intent-popup-cta" id="intentPopupCta"><span>Aller au formulaire principal</span></button>
+        <button type="button" class="intent-popup-secondary" id="intentPopupDismiss">Plus tard</button>
+      </div>
     </div>
   </div>
 
@@ -3059,9 +3219,273 @@
 
     /* ══════════ MODAL ══════════ */
     const modal = document.getElementById('modal');
-    document.getElementById('open-popup')?.addEventListener('click', e => { e.preventDefault(); modal.classList.add('open'); });
+    const modalEmailInput = document.getElementById('modal-email');
+    const primaryBookingForm = document.getElementById('primary-booking-form');
+    const newsletterForm = document.getElementById('newsletter-form');
+    const contactSection = document.getElementById('contact');
+    const intentPopup = document.getElementById('intentPopup');
+    const intentPopupClose = document.getElementById('intentPopupClose');
+    const intentPopupDismiss = document.getElementById('intentPopupDismiss');
+    const intentPopupCta = document.getElementById('intentPopupCta');
+    const emailContactLinks = document.querySelectorAll('a[href*="email-protection"]');
+    const sessionKeys = {
+      popupShown: 'akilimali-intent-popup-shown',
+      converted: 'akilimali-primary-action-completed'
+    };
+
+    function readSessionFlag(key) {
+      try {
+        return sessionStorage.getItem(key) === '1';
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function writeSessionFlag(key) {
+      try {
+        sessionStorage.setItem(key, '1');
+      } catch (error) {
+        return null;
+      }
+      return null;
+    }
+
+    const visitorJourney = window.akilimaliVisitorJourney = {
+      startedAt: Date.now(),
+      lastInteractionAt: Date.now(),
+      interactionScore: 0,
+      maxScrollDepth: 0,
+      mouseDistance: 0,
+      popupShown: readSessionFlag(sessionKeys.popupShown),
+      hasConverted: readSessionFlag(sessionKeys.converted),
+      formStarted: false,
+      activityLog: []
+    };
+
+    function trackVisitorEvent(name, details = {}) {
+      const eventPayload = {
+        name,
+        elapsedSeconds: Math.round((Date.now() - visitorJourney.startedAt) / 1000),
+        interactionScore: Math.round(visitorJourney.interactionScore * 10) / 10,
+        maxScrollDepth: visitorJourney.maxScrollDepth,
+        mouseDistance: Math.round(visitorJourney.mouseDistance),
+        ...details
+      };
+
+      visitorJourney.lastInteractionAt = Date.now();
+      visitorJourney.lastEvent = eventPayload;
+      visitorJourney.activityLog.push(eventPayload);
+      if (visitorJourney.activityLog.length > 25) {
+        visitorJourney.activityLog.shift();
+      }
+
+      if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: `akilimali_${name}`,
+          ...eventPayload
+        });
+      }
+
+      window.dispatchEvent(new CustomEvent('akilimali:visitor-activity', {
+        detail: eventPayload
+      }));
+    }
+
+    function closeIntentPopup() {
+      if (!intentPopup) return;
+      intentPopup.classList.remove('open');
+      intentPopup.setAttribute('aria-hidden', 'true');
+    }
+
+    function dismissIntentPopup(source = 'dismiss') {
+      if (!intentPopup?.classList.contains('open')) return;
+      closeIntentPopup();
+      trackVisitorEvent('intent_popup_closed', { source });
+    }
+
+    function markPrimaryAction(source) {
+      if (!visitorJourney.hasConverted) {
+        visitorJourney.hasConverted = true;
+        writeSessionFlag(sessionKeys.converted);
+        trackVisitorEvent('primary_action_detected', { source });
+      }
+      closeIntentPopup();
+    }
+
+    function openBookingModal(source = 'booking_cta') {
+      closeIntentPopup();
+      modal.classList.add('open');
+      markPrimaryAction(source);
+      trackVisitorEvent('booking_modal_opened', { source });
+      setTimeout(() => modalEmailInput?.focus(), 120);
+    }
+
+    document.getElementById('open-popup')?.addEventListener('click', event => {
+      event.preventDefault();
+      openBookingModal('contact_cta');
+    });
     document.getElementById('modalClose')?.addEventListener('click', () => modal.classList.remove('open'));
     modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+    /* ══════════ VISITOR ACTIVITY / HESITATION POPUP ══════════ */
+    const popupDelayMs = 14000;
+    const popupInteractionThreshold = 6;
+    const popupScrollThreshold = 24;
+    const popupDistanceThreshold = 900;
+    let intentPopupTimer = null;
+    let scrollMilestone = 0;
+    let pointerMilestone = 0;
+    let lastPointerSample = null;
+    let lastPointerSampleTime = 0;
+
+    function openIntentPopup() {
+      if (!intentPopup) return;
+      if (visitorJourney.popupShown || visitorJourney.hasConverted || visitorJourney.formStarted || modal.classList.contains('open')) return;
+
+      visitorJourney.popupShown = true;
+      writeSessionFlag(sessionKeys.popupShown);
+      intentPopup.classList.add('open');
+      intentPopup.setAttribute('aria-hidden', 'false');
+      trackVisitorEvent('intent_popup_shown', {
+        reason: 'engaged_without_primary_action'
+      });
+    }
+
+    function evaluateIntentPopup() {
+      clearTimeout(intentPopupTimer);
+
+      if (visitorJourney.popupShown || visitorJourney.hasConverted || visitorJourney.formStarted || modal.classList.contains('open')) {
+        return;
+      }
+
+      const timeOnPage = Date.now() - visitorJourney.startedAt;
+      const engagedWithoutConverting =
+        visitorJourney.interactionScore >= popupInteractionThreshold &&
+        (
+          visitorJourney.maxScrollDepth >= popupScrollThreshold ||
+          visitorJourney.mouseDistance >= popupDistanceThreshold ||
+          visitorJourney.interactionScore >= popupInteractionThreshold + 2
+        );
+
+      if (timeOnPage >= popupDelayMs && engagedWithoutConverting) {
+        openIntentPopup();
+        return;
+      }
+
+      intentPopupTimer = setTimeout(evaluateIntentPopup, 1500);
+    }
+
+    function registerInteraction(points, name, details = {}) {
+      if (!visitorJourney.hasConverted) {
+        visitorJourney.interactionScore += points;
+      }
+      trackVisitorEvent(name, details);
+      evaluateIntentPopup();
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const depth = scrollableHeight > 0 ? Math.round((window.scrollY / scrollableHeight) * 100) : 0;
+
+      if (depth > visitorJourney.maxScrollDepth) {
+        visitorJourney.maxScrollDepth = depth;
+        const milestone = Math.floor(depth / 12);
+        if (milestone > scrollMilestone) {
+          scrollMilestone = milestone;
+          registerInteraction(1, 'scroll_depth_reached', { depth });
+        }
+      }
+    }, { passive: true });
+
+    document.addEventListener('mousemove', event => {
+      const now = Date.now();
+      if (now - lastPointerSampleTime < 180) return;
+
+      if (lastPointerSample) {
+        visitorJourney.mouseDistance += Math.hypot(
+          event.clientX - lastPointerSample.x,
+          event.clientY - lastPointerSample.y
+        );
+
+        const milestone = Math.floor(visitorJourney.mouseDistance / 450);
+        if (milestone > pointerMilestone) {
+          pointerMilestone = milestone;
+          registerInteraction(0.8, 'pointer_distance_reached', {
+            distance: Math.round(visitorJourney.mouseDistance)
+          });
+        }
+      }
+
+      lastPointerSample = {
+        x: event.clientX,
+        y: event.clientY
+      };
+      lastPointerSampleTime = now;
+    }, { passive: true });
+
+    document.addEventListener('click', event => {
+      const clickableTarget = event.target instanceof Element
+        ? event.target.closest('a, button')
+        : null;
+      const targetLabel =
+        clickableTarget?.id ||
+        clickableTarget?.getAttribute('aria-label') ||
+        clickableTarget?.textContent?.trim().slice(0, 32) ||
+        clickableTarget?.tagName?.toLowerCase() ||
+        'page';
+
+      registerInteraction(1.4, 'click_interaction', { target: targetLabel });
+    });
+
+    document.addEventListener('touchstart', () => {
+      registerInteraction(1, 'touch_interaction');
+    }, { passive: true });
+
+    document.addEventListener('focusin', event => {
+      if (!(event.target instanceof HTMLInputElement)) return;
+      visitorJourney.formStarted = true;
+      trackVisitorEvent('form_field_focused', {
+        field: event.target.name || event.target.id || 'field'
+      });
+      clearTimeout(intentPopupTimer);
+    });
+
+    newsletterForm?.addEventListener('submit', () => {
+      markPrimaryAction('newsletter_submit');
+      trackVisitorEvent('newsletter_form_submitted');
+    });
+
+    primaryBookingForm?.addEventListener('submit', () => {
+      markPrimaryAction('booking_form_submit');
+      trackVisitorEvent('booking_form_submitted');
+    });
+
+    emailContactLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        markPrimaryAction('email_contact_click');
+        trackVisitorEvent('email_contact_clicked');
+      });
+    });
+
+    intentPopupClose?.addEventListener('click', () => dismissIntentPopup('close_button'));
+    intentPopupDismiss?.addEventListener('click', () => dismissIntentPopup('later_button'));
+    intentPopupCta?.addEventListener('click', () => {
+      trackVisitorEvent('intent_popup_cta_clicked');
+      contactSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => openBookingModal('intent_popup_cta'), 350);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      if (intentPopup?.classList.contains('open')) {
+        dismissIntentPopup('escape_key');
+      }
+      if (modal.classList.contains('open')) {
+        modal.classList.remove('open');
+      }
+    });
+
+    evaluateIntentPopup();
 
     /* ══════════ REVEAL ON SCROLL ══════════ */
     const revealEls = document.querySelectorAll('.reveal');
