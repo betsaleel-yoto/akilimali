@@ -752,6 +752,230 @@
     }
 
     /* ══════════════════════════════════════
+       PROGRAMME D’ACCOMPAGNEMENT
+    ══════════════════════════════════════ */
+    #programme {
+      padding: 10rem 0;
+      background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .programme-header {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+
+    .programme-top-grid,
+    .programme-bottom-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .programme-top-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .programme-bottom-grid {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 1.5rem;
+    }
+
+    .programme-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 4px;
+      padding: 2.5rem;
+      transition: transform 0.5s var(--ease-expo), border-color 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo);
+    }
+    .programme-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s var(--ease-expo);
+    }
+    .programme-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+    }
+    .programme-card:hover::before {
+      transform: scaleX(1);
+    }
+    .programme-card--objective {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(19,24,40,0.96) 45%, rgba(19,24,40,1) 100%);
+    }
+    .programme-card--next {
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(19,24,40,1) 75%);
+    }
+
+    .programme-card-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .programme-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .programme-objective-text,
+    .programme-next-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .programme-objective-text {
+      max-width: 52ch;
+    }
+
+    .programme-investment {
+      margin-top: 2rem;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.18);
+      background: rgba(10,13,30,0.4);
+      border-radius: 4px;
+    }
+    .programme-investment span {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+    .programme-investment strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .programme-investment p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .programme-facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .programme-fact {
+      padding: 1rem 1rem 1.05rem;
+      border: 1px solid rgba(201,168,76,0.14);
+      background: rgba(10,13,30,0.35);
+      border-radius: 4px;
+    }
+    .programme-fact span {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+    .programme-fact strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+    .programme-fact p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .programme-benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .programme-benefit-card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      border: 1px solid var(--navy-border);
+      background: rgba(10,13,30,0.35);
+      border-radius: 4px;
+      transition: all 0.4s var(--ease-expo);
+    }
+    .programme-benefit-card:hover {
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-3px);
+      background: rgba(201,168,76,0.05);
+    }
+    .programme-benefit-icon {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.22);
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+    .programme-benefit-content h4 {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+    .programme-benefit-content p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .programme-cta-row {
+      margin-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ══════════════════════════════════════
        ABOUT
     ══════════════════════════════════════ */
     #about {
@@ -2142,6 +2366,10 @@
       .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
       .services-grid   { grid-template-columns: repeat(2, 1fr); }
 
+      .programme-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+      .programme-top-grid,
+      .programme-bottom-grid { grid-template-columns: 1fr; }
+
       .about-grid  { grid-template-columns: 1fr; gap: 4rem; }
       .about-badge { right: 0; bottom: -1rem; }
 
@@ -2204,6 +2432,16 @@
         gap: 0;
       }
       .service-card { padding: 2rem 1.4rem 2.5rem; }
+      #programme { padding: 5rem 0; }
+      .programme-card { padding: 2rem 1.4rem; }
+      .programme-facts,
+      .programme-benefits-grid { grid-template-columns: 1fr; }
+      .programme-investment strong { font-size: 1.9rem; }
+      .programme-card h3 { font-size: 1.45rem; }
+      .programme-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
       /* ── Stats ── */
       #stats { padding: 0; }
@@ -2359,6 +2597,7 @@
       .section-container { padding: 0 1rem; }
       .hero-content  { padding: 0 1rem; padding-top: 6.5rem; }
       .service-card  { padding: 1.6rem 1rem 2rem; }
+      .programme-card  { padding: 1.6rem 1rem; }
       .about-badge   { width: 80px; height: 80px; }
       .modal-box     { padding: 1.8rem 1rem; }
     }
@@ -2401,6 +2640,7 @@
     <nav>
       <ul>
         <li><a href="#services">Services</a></li>
+        <li><a href="#programme">Programme</a></li>
         <li><a href="#about">À Propos</a></li>
         <li><a href="#certificates">Certificats</a></li>
         <li><a href="#clients">Clients</a></li>
@@ -2416,6 +2656,7 @@
     <button class="mobile-nav-close" id="mobileNavClose">✕</button>
     <ul class="mobile-nav-links">
       <li><a href="#services" class="mobile-link">Services</a></li>
+      <li><a href="#programme" class="mobile-link">Programme</a></li>
       <li><a href="#about" class="mobile-link">À Propos</a></li>
       <li><a href="#certificates" class="mobile-link">Certificats</a></li>
       <li><a href="#clients" class="mobile-link">Clients</a></li>
@@ -2568,6 +2809,138 @@
           <p class="service-desc">Accompagnement personnalisé pour définir une vision claire et orienter efficacement votre organisation vers la réussite.</p>
           <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ PROGRAMME D’ACCOMPAGNEMENT ════════════ -->
+  <section id="programme">
+    <div class="section-container">
+      <div class="programme-header">
+        <div>
+          <div class="section-label reveal">
+            <span class="section-label-line"></span>
+            <span>Programme d’accompagnement</span>
+          </div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Programme d’accompagnement<br>
+            <em>AKILIMALI COACHING</em>
+          </h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-2">
+          Pour entrepreneurs déjà en activité qui veulent passer à l’échelle. Objectif : transformer ton business en 12 mois avec un suivi rapproché et des résultats concrets.
+        </p>
+      </div>
+
+      <div class="programme-top-grid">
+        <article class="programme-card programme-card--objective reveal">
+          <div class="programme-card-kicker">Objectif</div>
+          <h3>Transformer ton business en 12 mois</h3>
+          <p class="programme-objective-text">
+            Grâce à un suivi rapproché, tu avances avec un plan clair, des priorités nettes et des actions concrètes pour accélérer la croissance de ton entreprise.
+          </p>
+          <div class="programme-investment">
+            <span>Investissement total</span>
+            <strong>700$</strong>
+            <p>100$ à l’inscription + 50$/mois pendant 12 mois.</p>
+          </div>
+        </article>
+
+        <article class="programme-card programme-card--access reveal reveal-delay-1">
+          <div class="programme-card-kicker">Conditions d’accès</div>
+          <h3>Un programme réservé aux entrepreneurs déjà lancés</h3>
+          <div class="programme-facts">
+            <div class="programme-fact">
+              <span>Frais d’inscription</span>
+              <strong>100$</strong>
+              <p>Paiement unique à l’enregistrement.</p>
+            </div>
+            <div class="programme-fact">
+              <span>Mensualité</span>
+              <strong>50$/mois</strong>
+              <p>Un accompagnement continu sur 12 mois.</p>
+            </div>
+            <div class="programme-fact">
+              <span>Durée</span>
+              <strong>12 mois</strong>
+              <p>Programme renouvelable selon tes besoins.</p>
+            </div>
+            <div class="programme-fact">
+              <span>Critère</span>
+              <strong>Déjà en activité</strong>
+              <p>Réservé aux entrepreneurs ayant déjà démarré leur activité.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <article class="programme-card programme-card--benefits reveal reveal-delay-2">
+        <div class="programme-card-kicker">Ce que tu reçois</div>
+        <h3>Un accompagnement complet, proche et orienté résultats</h3>
+        <div class="programme-benefits-grid">
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-comments"></i></div>
+            <div class="programme-benefit-content">
+              <h4>Accès direct au coach</h4>
+              <p>Ligne WhatsApp/Email prioritaire pour débloquer tes problèmes rapidement.</p>
+            </div>
+          </div>
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="programme-benefit-content">
+              <h4>Accompagnement personnalisé</h4>
+              <p>Stratégie adaptée à ton marché, tes chiffres et tes objectifs. Pas de théorie générique.</p>
+            </div>
+          </div>
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-hands-helping"></i></div>
+            <div class="programme-benefit-content">
+              <h4>Assistance continue</h4>
+              <p>Support entre les séances pour tes décisions clés, négociations et lancements.</p>
+            </div>
+          </div>
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="programme-benefit-content">
+              <h4>Focus 100% résultats</h4>
+              <p>On suit tes KPI chaque mois avec un objectif clair : croissance du chiffre d’affaires et rentabilité.</p>
+            </div>
+          </div>
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-video"></i></div>
+            <div class="programme-benefit-content">
+              <h4>2 à 3 séances par mois</h4>
+              <p>Sessions 1:1 de 60 à 90 minutes pour la stratégie, le plan d’action et le bilan.</p>
+            </div>
+          </div>
+          <div class="programme-benefit-card">
+            <div class="programme-benefit-icon"><i class="fas fa-gift"></i></div>
+            <div class="programme-benefit-content">
+              <h4>Opportunités bonus</h4>
+              <p>Mise en réseau avec d’autres entrepreneurs, ressources exclusives et invitations aux masterminds Akilimali.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="programme-bottom-grid">
+        <article class="programme-card programme-card--engagement reveal reveal-delay-3">
+          <div class="programme-card-kicker">Engagement</div>
+          <p class="programme-next-text">
+            Tu investis 700$ sur 12 mois. En retour, tu as un coach dédié pour structurer, accélérer et sécuriser ta croissance.
+          </p>
+        </article>
+
+        <article class="programme-card programme-card--next reveal reveal-delay-4">
+          <div class="programme-card-kicker">Prochaine étape</div>
+          <h3>Réserve ta place maintenant</h3>
+          <p class="programme-next-text">
+            Places limitées pour garantir un suivi de qualité.
+          </p>
+          <div class="programme-cta-row">
+            <a href="#contact" class="btn-primary"><span>Réserver ta place</span></a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -3081,6 +3454,7 @@
         <div style="text-align:center;">
           <div class="footer-links">
             <a href="#services">Services</a>
+            <a href="#programme">Programme</a>
             <a href="#about">À Propos</a>
             <a href="#certificates">Certificats</a>
             <a href="#testimonials">Témoignages</a>
