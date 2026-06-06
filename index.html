@@ -752,6 +752,281 @@
     }
 
     /* ══════════════════════════════════════
+       CATALOGUE
+    ══════════════════════════════════════ */
+    #catalogue {
+      padding: 10rem 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(201,168,76,0.08) 0%, transparent 32%),
+        linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .catalogue-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+
+    .catalogue-top-grid,
+    .catalogue-bottom-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .catalogue-top-grid {
+      grid-template-columns: 1.02fr 0.98fr;
+    }
+
+    .catalogue-bottom-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+      margin-top: 1.5rem;
+    }
+
+    .catalogue-card--problem {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(19,24,40,0.96) 50%, rgba(19,24,40,1) 100%);
+    }
+
+    .catalogue-card--method {
+      background: linear-gradient(135deg, rgba(10,13,30,0.88) 0%, rgba(19,24,40,1) 100%);
+    }
+
+    .catalogue-card--modules {
+      background: linear-gradient(180deg, rgba(201,168,76,0.05) 0%, rgba(19,24,40,1) 100%);
+      margin-top: 1.5rem;
+    }
+
+    .catalogue-card--benefits {
+      background: rgba(19,24,40,0.98);
+    }
+
+    .catalogue-card--offers {
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(19,24,40,1) 78%);
+    }
+
+    .catalogue-question {
+      margin-top: 1.45rem;
+      padding: 1.1rem 1.2rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,168,76,0.06);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+
+    .catalogue-focus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .catalogue-focus {
+      padding: 1rem 1rem 1.05rem;
+      border: 1px solid rgba(201,168,76,0.14);
+      background: rgba(10,13,30,0.34);
+      border-radius: 4px;
+    }
+
+    .catalogue-focus strong {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .catalogue-focus span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.04rem;
+      color: var(--cream);
+      line-height: 1.35;
+    }
+
+    .catalogue-module-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .catalogue-module {
+      padding: 1rem;
+      border: 1px solid rgba(201,168,76,0.14);
+      background: rgba(10,13,30,0.35);
+      border-radius: 4px;
+      min-height: 128px;
+      transition: all 0.4s var(--ease-expo);
+    }
+
+    .catalogue-module:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .catalogue-module-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold);
+      font-family: var(--font-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.9rem;
+    }
+
+    .catalogue-module h4 {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.35;
+    }
+
+    .catalogue-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .catalogue-list li {
+      position: relative;
+      padding-left: 1.7rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .catalogue-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--gold);
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .catalogue-result {
+      margin-top: 1.4rem;
+      padding: 1rem 1.15rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,168,76,0.08);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      line-height: 1.35;
+    }
+
+    .catalogue-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .catalogue-offer {
+      position: relative;
+      padding: 1.2rem;
+      border: 1px solid var(--navy-border);
+      background: rgba(10,13,30,0.35);
+      border-radius: 4px;
+      transition: all 0.4s var(--ease-expo);
+      overflow: hidden;
+    }
+
+    .catalogue-offer--featured {
+      border-color: rgba(201,168,76,0.38);
+      background: linear-gradient(180deg, rgba(201,168,76,0.09) 0%, rgba(10,13,30,0.38) 100%);
+      transform: translateY(-4px);
+    }
+
+    .catalogue-offer-name {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+
+    .catalogue-offer-price {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .catalogue-offer p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .catalogue-cta-note {
+      margin-top: 1.3rem;
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      line-height: 1.35;
+      color: var(--cream);
+    }
+
+    .catalogue-contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+
+    .catalogue-contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(201,168,76,0.16);
+      background: rgba(10,13,30,0.38);
+      border-radius: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      transition: all 0.3s var(--ease-expo);
+    }
+
+    .catalogue-contact-item i {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .catalogue-contact-item:hover {
+      color: var(--cream);
+      border-color: rgba(201,168,76,0.34);
+      background: rgba(201,168,76,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ══════════════════════════════════════
        PROGRAMME D’ACCOMPAGNEMENT
     ══════════════════════════════════════ */
     #programme {
@@ -2362,9 +2637,16 @@
       .hero-stats    { right: 2rem; gap: 2rem; }
       .hero-stat-num { font-size: 1.6rem; }
 
-      nav ul { gap: 1.8rem; }
+      nav ul { gap: 1.35rem; }
       .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
       .services-grid   { grid-template-columns: repeat(2, 1fr); }
+
+      .catalogue-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+      .catalogue-top-grid,
+      .catalogue-bottom-grid { grid-template-columns: 1fr; }
+      .catalogue-focus-grid,
+      .catalogue-module-grid,
+      .catalogue-offer-grid { grid-template-columns: repeat(2, 1fr); }
 
       .programme-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
       .programme-top-grid,
@@ -2432,6 +2714,22 @@
         gap: 0;
       }
       .service-card { padding: 2rem 1.4rem 2.5rem; }
+      #catalogue { padding: 5rem 0; }
+      .catalogue-top-grid,
+      .catalogue-bottom-grid { grid-template-columns: 1fr; }
+      .catalogue-focus-grid,
+      .catalogue-module-grid,
+      .catalogue-offer-grid { grid-template-columns: 1fr; }
+      .catalogue-question,
+      .catalogue-result,
+      .catalogue-cta-note { font-size: 1.08rem; }
+      .catalogue-contact-list {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .catalogue-contact-item {
+        width: 100%;
+      }
       #programme { padding: 5rem 0; }
       .programme-card { padding: 2rem 1.4rem; }
       .programme-facts,
@@ -2640,6 +2938,7 @@
     <nav>
       <ul>
         <li><a href="#services">Services</a></li>
+        <li><a href="#catalogue">Catalogue</a></li>
         <li><a href="#programme">Programme</a></li>
         <li><a href="#about">À Propos</a></li>
         <li><a href="#certificates">Certificats</a></li>
@@ -2656,6 +2955,7 @@
     <button class="mobile-nav-close" id="mobileNavClose">✕</button>
     <ul class="mobile-nav-links">
       <li><a href="#services" class="mobile-link">Services</a></li>
+      <li><a href="#catalogue" class="mobile-link">Catalogue</a></li>
       <li><a href="#programme" class="mobile-link">Programme</a></li>
       <li><a href="#about" class="mobile-link">À Propos</a></li>
       <li><a href="#certificates" class="mobile-link">Certificats</a></li>
@@ -2688,7 +2988,7 @@
       </h1>
       <p class="hero-subtitle">Stratégie · Excellence · Transformation</p>
       <div class="hero-actions">
-        <a href="#services" class="btn-primary"><span>Découvrir mes offres</span></a>
+        <a href="#catalogue" class="btn-primary"><span>Découvrir le catalogue</span></a>
         <a href="#about" class="btn-ghost">
           <span class="btn-ghost-icon"><i class="fas fa-arrow-right"></i></span>
           <span>Mon parcours</span>
@@ -2809,6 +3109,168 @@
           <p class="service-desc">Accompagnement personnalisé pour définir une vision claire et orienter efficacement votre organisation vers la réussite.</p>
           <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CATALOGUE ════════════ -->
+  <section id="catalogue">
+    <div class="section-container">
+      <div class="catalogue-header">
+        <div>
+          <div class="section-label reveal">
+            <span class="section-label-line"></span>
+            <span>02 — Catalogue</span>
+          </div>
+          <h2 class="section-heading reveal reveal-delay-1">
+            Programme d’<em>excellence</em><br>
+            en entrepreneuriat
+          </h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-2">
+          Par le coach Lebon Akilimali <strong>@AKILIMALICOACHING</strong>. Une méthode complète pour structurer votre projet, attirer des clients, générer des revenus et assurer une croissance durable.
+        </p>
+      </div>
+
+      <div class="catalogue-top-grid">
+        <article class="programme-card catalogue-card catalogue-card--problem reveal">
+          <div class="programme-card-kicker">Constat</div>
+          <h3>Pourquoi votre entreprise n’évolue pas comme prévu ?</h3>
+          <p class="programme-objective-text">
+            Parce que vous avancez sans stratégie claire, sans système structuré et sans accompagnement adapté. Résultat : des efforts constants, mais des résultats limités.
+          </p>
+          <div class="catalogue-question">Et si vous pouviez changer cela définitivement ?</div>
+        </article>
+
+        <article class="programme-card catalogue-card catalogue-card--method reveal reveal-delay-1">
+          <div class="programme-card-kicker">Approche complète</div>
+          <h3>Une approche complète pour réussir en entrepreneuriat</h3>
+          <p class="programme-objective-text">
+            Le Programme Intégral d’Excellence en Entrepreneuriat est conçu pour accompagner chaque entrepreneur dans la création, la structuration et la croissance de son entreprise.
+          </p>
+          <div class="catalogue-focus-grid">
+            <div class="catalogue-focus">
+              <strong>Structurer</strong>
+              <span>Votre projet</span>
+            </div>
+            <div class="catalogue-focus">
+              <strong>Attirer</strong>
+              <span>Des clients</span>
+            </div>
+            <div class="catalogue-focus">
+              <strong>Générer</strong>
+              <span>Des revenus</span>
+            </div>
+            <div class="catalogue-focus">
+              <strong>Assurer</strong>
+              <span>Une croissance durable</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <article class="programme-card catalogue-card catalogue-card--modules reveal reveal-delay-2">
+        <div class="programme-card-kicker">Parcours en 12 modules</div>
+        <h3>Un parcours complet en 12 étapes stratégiques</h3>
+        <div class="catalogue-module-grid">
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">01</span>
+            <h4>Fondements de l’entrepreneuriat moderne et digital</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">02</span>
+            <h4>Détection d’opportunités rentables</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">03</span>
+            <h4>Structuration stratégique</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">04</span>
+            <h4>Positionnement et conquête de marché</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">05</span>
+            <h4>Financement et solutions digitales</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">06</span>
+            <h4>Gestion financière intelligente</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">07</span>
+            <h4>Optimisation et rentabilité</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">08</span>
+            <h4>Résilience entrepreneuriale</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">09</span>
+            <h4>Comptabilité et performance</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">10</span>
+            <h4>Marketing avancé</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">11</span>
+            <h4>Business plan</h4>
+          </div>
+          <div class="catalogue-module">
+            <span class="catalogue-module-num">12</span>
+            <h4>Structuration juridique</h4>
+          </div>
+        </div>
+      </article>
+
+      <div class="catalogue-bottom-grid">
+        <article class="programme-card catalogue-card catalogue-card--benefits reveal reveal-delay-3">
+          <div class="programme-card-kicker">Ce que le client obtient</div>
+          <h3>Vous obtenez une méthode, des outils et une vraie transformation</h3>
+          <ul class="catalogue-list">
+            <li>Accompagnement personnalisé</li>
+            <li>Outils pratiques applicables immédiatement</li>
+            <li>Méthodologie éprouvée</li>
+            <li>Transformation réelle de votre posture</li>
+          </ul>
+          <div class="catalogue-result">Vous passez d’un entrepreneur hésitant à un leader structuré.</div>
+        </article>
+
+        <article class="programme-card catalogue-card catalogue-card--offers reveal reveal-delay-4">
+          <div class="programme-card-kicker">Offres</div>
+          <h3>Des formules pour chaque niveau d’accompagnement</h3>
+          <div class="catalogue-offer-grid">
+            <div class="catalogue-offer">
+              <span class="catalogue-offer-name">Standard</span>
+              <strong class="catalogue-offer-price">150$</strong>
+              <p>Accès aux 12 modules. Sessions collectives. Idéal pour démarrer.</p>
+            </div>
+            <div class="catalogue-offer catalogue-offer--featured">
+              <span class="catalogue-offer-name">Premium</span>
+              <strong class="catalogue-offer-price">300$</strong>
+              <p>Modules + outils + coaching de groupe. Suivi pendant la formation. Idéal pour progresser rapidement.</p>
+            </div>
+            <div class="catalogue-offer">
+              <span class="catalogue-offer-name">VIP</span>
+              <strong class="catalogue-offer-price">600$</strong>
+              <p>Coaching personnalisé. Accompagnement complet. Suivi projet réel. Idéal pour des résultats concrets.</p>
+            </div>
+          </div>
+          <p class="catalogue-cta-note">Prêt à transformer votre avenir ?</p>
+          <div class="programme-cta-row">
+            <a href="#contact" class="btn-primary"><span>Prendre contact</span></a>
+            <a href="https://www.akilimalicoaching.com" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+              <span class="btn-ghost-icon"><i class="fas fa-globe"></i></span>
+              <span>Voir le site</span>
+            </a>
+          </div>
+          <div class="catalogue-contact-list">
+            <a class="catalogue-contact-item" href="tel:+243834715292"><i class="fas fa-phone"></i><span>+243 834 715 292</span></a>
+            <a class="catalogue-contact-item" href="mailto:contact@akilimaliconsulting.com"><i class="fas fa-envelope"></i><span>contact@akilimaliconsulting.com</span></a>
+            <a class="catalogue-contact-item" href="https://www.akilimalicoaching.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i><span>www.akilimalicoaching.com</span></a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -2983,7 +3445,7 @@
         <div class="about-content">
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>02 — À Propos</span>
+            <span>03 — À Propos</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Expert en<br>
@@ -3045,7 +3507,7 @@
         <div>
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>03 — Certificats</span>
+            <span>04 — Certificats</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Les <em>certificats</em><br>
@@ -3184,7 +3646,7 @@
       <div class="clients-header">
         <div class="section-label reveal" style="justify-content:center;">
           <span class="section-label-line"></span>
-          <span>04 — Clients</span>
+          <span>05 — Clients</span>
           <span class="section-label-line"></span>
         </div>
         <h2 class="section-heading reveal reveal-delay-1" style="text-align:center;">Entreprises <em>Accompagnées</em></h2>
@@ -3235,7 +3697,7 @@
         <div>
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>05 — Témoignages</span>
+            <span>06 — Témoignages</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Ce que disent<br>
@@ -3300,7 +3762,7 @@
         <div>
           <div class="section-label reveal">
             <span class="section-label-line"></span>
-            <span>06 — Événements</span>
+            <span>07 — Événements</span>
           </div>
           <h2 class="section-heading reveal reveal-delay-1">
             Galerie des<br>
@@ -3405,7 +3867,7 @@
       <div class="contact-inner">
         <div class="section-label reveal" style="justify-content:center;">
           <span class="section-label-line"></span>
-          <span>07 — Contact</span>
+          <span>08 — Contact</span>
           <span class="section-label-line"></span>
         </div>
         <h2 class="section-heading reveal reveal-delay-1">
@@ -3454,6 +3916,7 @@
         <div style="text-align:center;">
           <div class="footer-links">
             <a href="#services">Services</a>
+            <a href="#catalogue">Catalogue</a>
             <a href="#programme">Programme</a>
             <a href="#about">À Propos</a>
             <a href="#certificates">Certificats</a>
@@ -3552,7 +4015,7 @@
       requestAnimationFrame(animateCursor);
     }
     animateCursor();
-    document.querySelectorAll('a, button, .service-card, .video-card, .gallery-item, .certificate-card, .certificate-modal-close').forEach(el => {
+    document.querySelectorAll('a, button, .service-card, .catalogue-card, .video-card, .gallery-item, .certificate-card, .certificate-modal-close').forEach(el => {
       el.addEventListener('mouseenter', () => {
         if (dot) { dot.style.width = '12px'; dot.style.height = '12px'; }
         if (ring) { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; }
