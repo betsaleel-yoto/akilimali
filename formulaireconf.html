@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulaire d'inscription aux activités en présentiel organisées par AKILIMALI.">
+  <title>Inscription présentiel | AKILIMALI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-pale: #F5E6C0;
+      --navy: #0A0D1E;
+      --navy-mid: #0F1630;
+      --navy-card: #131828;
+      --navy-border: #1E2540;
+      --cream: #F7F2E8;
+      --text-main: #E8E4DC;
+      --text-muted: #8A8FA8;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-accent: 'Syne', sans-serif;
+      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(201, 168, 76, 0.12), transparent 36%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 28%),
+        linear-gradient(180deg, #070A16 0%, #0A0D1E 45%, #090B18 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 42rem;
+      height: 42rem;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(50px);
+      opacity: 0.16;
+      z-index: 0;
+    }
+
+    body::before {
+      left: -12rem;
+      top: 8rem;
+      background: rgba(201, 168, 76, 0.18);
+    }
+
+    body::after {
+      right: -14rem;
+      bottom: -10rem;
+      background: rgba(102, 113, 255, 0.14);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 13, 30, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #8A8FA8;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--cream);
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: transform 0.25s var(--ease-expo), border-color 0.25s var(--ease-expo), background 0.25s var(--ease-expo);
+    }
+
+    .return-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(201, 168, 76, 0.35);
+      background: rgba(201, 168, 76, 0.08);
+    }
+
+    .hero {
+      padding: 3.5rem 0 1.5rem;
+    }
+
+    .hero-grid,
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(19, 24, 40, 0.92) 0%, rgba(15, 22, 48, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 30px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.26);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-copy {
+      padding: 2.2rem;
+    }
+
+    .kicker {
+      margin: 0 0 1rem;
+      font-family: var(--font-accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-copy h1,
+    .section-head h2,
+    .aside-card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      line-height: 0.96;
+      color: var(--cream);
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.9rem, 6vw, 5.2rem);
+      max-width: 11ch;
+    }
+
+    .hero-copy p {
+      max-width: 60ch;
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      background: rgba(201, 168, 76, 0.08);
+      color: var(--text-main);
+      font-size: 0.82rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 1rem 1.35rem;
+      cursor: pointer;
+      transition: transform 0.25s var(--ease-expo), box-shadow 0.25s var(--ease-expo), border-color 0.25s var(--ease-expo), background 0.25s var(--ease-expo);
+      font-family: var(--font-accent);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      box-shadow: 0 18px 40px rgba(201, 168, 76, 0.24);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--cream);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .info-panel {
+      padding: 1.6rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .info-tile {
+      padding: 1.15rem 1.15rem 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .info-title {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .info-tile h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      line-height: 1;
+      color: var(--cream);
+    }
+
+    .info-tile p,
+    .aside-card p,
+    .aside-card li,
+    .form-note {
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .info-list i {
+      margin-top: 0.15rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .mini-stat {
+      padding: 0.9rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      color: var(--cream);
+      margin-bottom: 0.1rem;
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .registration {
+      padding: 0.75rem 0 4rem;
+    }
+
+    .form-card,
+    .aside-card {
+      padding: 1.7rem;
+    }
+
+    .form-card h2 {
+      margin-top: 0.15rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .subtitle {
+      margin: 0.8rem 0 1.4rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .activity-summary {
+      display: grid;
+      gap: 1rem;
+      margin: 1rem 0 1.4rem;
+      padding: 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(201, 168, 76, 0.16);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .activity-summary-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .activity-summary-head strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      line-height: 1;
+      color: var(--cream);
+    }
+
+    .activity-summary-head span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .summary-tag {
+      flex-shrink: 0;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      color: var(--gold);
+      font-family: var(--font-accent);
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .summary-item {
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(10, 13, 30, 0.4);
+    }
+
+    .summary-label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-family: var(--font-accent);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .summary-value {
+      display: block;
+      color: var(--cream);
+      line-height: 1.55;
+    }
+
+    .summary-note {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .form-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-family: var(--font-accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--cream);
+      padding: 0.95rem 1rem;
+      outline: none;
+      transition: border-color 0.25s var(--ease-expo), box-shadow 0.25s var(--ease-expo), transform 0.25s var(--ease-expo);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(138, 143, 168, 0.8);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(201, 168, 76, 0.55);
+      box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.08);
+      transform: translateY(-1px);
+    }
+
+    select {
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+        linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+      background-position:
+        calc(100% - 19px) 50%,
+        calc(100% - 13px) 50%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2.2rem;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .checkbox input {
+      width: 18px;
+      height: 18px;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.3rem;
+    }
+
+    .form-note {
+      font-size: 0.9rem;
+    }
+
+    .status {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem 1.05rem;
+      border-radius: 16px;
+      line-height: 1.6;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      background: rgba(45, 128, 77, 0.14);
+      border: 1px solid rgba(102, 204, 140, 0.25);
+      color: #dff7e8;
+    }
+
+    .status.error {
+      background: rgba(150, 42, 42, 0.16);
+      border: 1px solid rgba(230, 100, 100, 0.25);
+      color: #ffe2e2;
+    }
+
+    .aside-section {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .aside-card h3 {
+      margin-bottom: 0.85rem;
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .timeline-step {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      font-family: var(--font-accent);
+      font-weight: 800;
+    }
+
+    .timeline-item strong {
+      display: block;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .small-links {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .small-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--cream);
+      transition: transform 0.25s var(--ease-expo), border-color 0.25s var(--ease-expo);
+    }
+
+    .small-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(201, 168, 76, 0.3);
+    }
+
+    .small-link i {
+      color: var(--gold);
+      width: 18px;
+      text-align: center;
+    }
+
+    .footer-note {
+      padding: 0.5rem 0 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 960px) {
+      .topbar-inner {
+        align-items: flex-start;
+      }
+
+      .hero-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy h1 {
+        max-width: none;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 1.2rem, 1180px);
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+      }
+
+      .return-link {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero,
+      .registration {
+        padding-top: 1.5rem;
+      }
+
+      .hero-copy,
+      .info-panel,
+      .form-card,
+      .aside-card {
+        padding: 1.25rem;
+        border-radius: 24px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.4rem, 13vw, 3.6rem);
+      }
+
+      .form-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .activity-summary-head {
+        flex-direction: column;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn,
+      .small-link {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .form-note {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="Retour au site principal">
+        <span class="brand-mark">
+          <img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1753176718/ChatGPT_Image_22_juil._2025__11_26_17-removebg-preview_sqs0dd.png" alt="Akilimali Logo">
+        </span>
+        <span class="brand-copy">
+          <span>Akilimali</span>
+          <strong>Inscription présentiel</strong>
+        </span>
+      </a>
+
+      <a class="return-link" href="index.html">
+        <i class="fas fa-arrow-left"></i>
+        <span>Retour au site</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="panel hero-copy">
+          <p class="kicker">Kinshasa 2026</p>
+          <h1>Programme exécutif de développement du leadership, du business et du réseautage</h1>
+          <p>
+            AKILIMALI COACHING organise des rencontres professionnelles exclusives pour connecter les leaders,
+            développer les compétences et créer de nouvelles opportunités d’affaires dans les plus grands
+            établissements hôteliers de Kinshasa.
+          </p>
+
+          <div class="badge-row" aria-label="Points forts">
+            <span class="badge"><i class="fas fa-check"></i>4 activités exclusives</span>
+            <span class="badge"><i class="fas fa-clock"></i>Pack exécutif 200 USD</span>
+            <span class="badge"><i class="fas fa-users"></i>Networking de haut niveau</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#registrationForm">
+              <i class="fas fa-pen-to-square"></i>
+              <span>Remplir le formulaire</span>
+            </a>
+            <a class="btn btn-secondary" href="tel:+243834715292">
+              <i class="fas fa-phone"></i>
+              <span>Appeler maintenant</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="panel info-panel">
+          <div class="info-tile">
+            <p class="info-title">Programme 2026</p>
+            <h2>Quatre rendez-vous, un seul objectif : connecter et transformer</h2>
+            <p>
+              Chaque activité propose un format ciblé, une contribution claire et un lieu prestigieux.
+              Sélectionnez l'expérience qui correspond à votre profil ou à votre équipe.
+            </p>
+          </div>
+
+          <ul class="info-list">
+            <li>
+              <i class="fas fa-utensils"></i>
+              <span><strong>Executive Business Dinner</strong><br>Hilton Kinshasa - 50 USD</span>
+            </li>
+            <li>
+              <i class="fas fa-coffee"></i>
+              <span><strong>Executive Business Breakfast</strong><br>Pullman Kinshasa Grand Hotel - 50 USD</span>
+            </li>
+            <li>
+              <i class="fas fa-chart-line"></i>
+              <span><strong>Masterclass Marketing &amp; Vente</strong><br>Fleuve Congo Hotel - 100 USD</span>
+            </li>
+            <li>
+              <i class="fas fa-microphone"></i>
+              <span><strong>Conférence Premium Leadership &amp; Entrepreneuriat</strong><br>Hilton Kinshasa - 50 USD</span>
+            </li>
+          </ul>
+
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>250$</strong>
+              <span>Pack exécutif</span>
+            </div>
+            <div class="mini-stat">
+              <strong>200$</strong>
+              <span>Offre spéciale</span>
+            </div>
+            <div class="mini-stat">
+              <strong>300+</strong>
+              <span>Participants ciblés</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="registration">
+      <div class="container form-grid">
+        <form
+          class="panel form-card"
+          id="registrationForm"
+          action="https://formspree.io/f/xojzojog"
+          method="POST"
+        >
+          <div class="section-head">
+            <p class="kicker">Informations du participant</p>
+            <h2>Complétez les champs ci-dessous</h2>
+            <p class="subtitle">
+              Sélectionnez d'abord l'activité qui vous intéresse. Les informations de thème, de lieu et de
+              contribution s'alignent ensuite automatiquement pour faciliter l'enregistrement.
+            </p>
+          </div>
+
+          <input type="hidden" name="_subject" value="Nouvelle inscription activité présentiel">
+          <input type="hidden" name="source" value="formulaireconf.html">
+          <input type="hidden" id="event_theme" name="event_theme">
+          <input type="hidden" id="venue" name="venue">
+          <input type="hidden" id="event_format" name="event_format">
+
+          <div class="activity-summary" aria-live="polite">
+            <div class="activity-summary-head">
+              <div>
+                <strong id="summaryTitle">Choisissez une activité</strong>
+                <span id="summarySubtitle">Les détails du programme apparaîtront ici automatiquement.</span>
+              </div>
+              <span class="summary-tag" id="summaryTag">Programme 2026</span>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="summary-label">Thème</span>
+                <span class="summary-value" id="summaryTheme">Sélectionnez une activité pour voir son thème.</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Lieu</span>
+                <span class="summary-value" id="summaryVenue">Hilton, Pullman ou Fleuve Congo selon le programme.</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Contribution</span>
+                <span class="summary-value" id="summaryContribution">50 USD à 250 USD selon la formule choisie.</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Format</span>
+                <span class="summary-value" id="summaryFormat">Dîner, petit-déjeuner, masterclass, conférence ou pack.</span>
+              </div>
+            </div>
+            <p class="summary-note" id="summaryNote">
+              Plus de 300 participants ciblés, plus de 100 entreprises représentées et plus de 50 partenariats potentiels.
+            </p>
+          </div>
+
+          <div class="form-fields">
+            <div class="field">
+              <label for="full_name">Nom complet *</label>
+              <input id="full_name" name="full_name" type="text" autocomplete="name" placeholder="Ex. Lebon Akilimali" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Téléphone / WhatsApp *</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+243 ..." required>
+            </div>
+
+            <div class="field">
+              <label for="email">Adresse e-mail *</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@domaine.com" required>
+            </div>
+
+            <div class="field">
+              <label for="organization">Organisation / entreprise</label>
+              <input id="organization" name="organization" type="text" autocomplete="organization" placeholder="Nom de l'organisation">
+            </div>
+
+            <div class="field full">
+              <label for="activity_name">Activité choisie *</label>
+              <select id="activity_name" name="activity_name" required>
+                <option value="" selected disabled>Choisir une activité</option>
+                <option value="Executive Business Dinner" data-theme="Le Pouvoir du Réseau : Transformer les Relations en Opportunités d'Affaires" data-venue="Hilton Kinshasa" data-contribution="50 USD" data-format="Dîner de prestige">
+                  Executive Business Dinner - 50 USD
+                </option>
+                <option value="Executive Business Breakfast" data-theme="Entreprendre et Croître dans un Marché en Mutation" data-venue="Pullman Kinshasa Grand Hotel" data-contribution="50 USD" data-format="Petit-déjeuner d'affaires">
+                  Executive Business Breakfast - 50 USD
+                </option>
+                <option value="Masterclass Marketing &amp; Vente" data-theme="Devenir une Machine à Vendre : Les Stratégies qui Génèrent des Résultats" data-venue="Fleuve Congo Hotel" data-contribution="100 USD" data-format="Masterclass">
+                  Masterclass Marketing &amp; Vente - 100 USD
+                </option>
+                <option value="Conférence Premium Leadership &amp; Entrepreneuriat" data-theme="Leadership, Vision et Création de Richesse : Construire l'Afrique de Demain" data-venue="Hilton Kinshasa" data-contribution="50 USD" data-format="Conférence premium">
+                  Conférence Premium Leadership &amp; Entrepreneuriat - 50 USD
+                </option>
+                <option value="Pack Executive" data-theme="Accès aux quatre événements du programme" data-venue="Kinshasa - plusieurs lieux" data-contribution="250 USD" data-format="Pack complet">
+                  Pack Executive (4 événements) - 250 USD
+                </option>
+                <option value="Offre spéciale pack complet" data-theme="Accès aux quatre événements du programme" data-venue="Kinshasa - plusieurs lieux" data-contribution="200 USD" data-format="Offre spéciale">
+                  Offre spéciale pack complet - 200 USD
+                </option>
+                <option value="Autre activité / demande spéciale" data-theme="À préciser" data-venue="À préciser" data-contribution="Sur demande" data-format="Personnalisé">
+                  Autre activité / demande spéciale
+                </option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="event_date">Date de l'activité *</label>
+              <input id="event_date" name="event_date" type="date" required>
+            </div>
+
+            <div class="field">
+              <label for="event_time">Heure de début</label>
+              <input id="event_time" name="event_time" type="time">
+            </div>
+
+            <div class="field full">
+              <label for="location">Lieu / ville *</label>
+              <input id="location" name="location" type="text" placeholder="Ex. Lubumbashi, Kinshasa..." required>
+            </div>
+
+            <div class="field">
+              <label for="contribution">Contribution</label>
+              <input id="contribution" name="contribution" type="text" readonly placeholder="Sélectionnez une activité">
+            </div>
+
+            <div class="field">
+              <label for="participants">Nombre de participants *</label>
+              <input id="participants" name="participants" type="number" min="1" max="500" value="1" required>
+            </div>
+
+            <div class="field full">
+              <label for="category">Catégorie du groupe</label>
+              <select id="category" name="category">
+                <option value="" selected>Optionnel</option>
+                <option>Individuel</option>
+                <option>Petit groupe</option>
+                <option>Association</option>
+                <option>Entreprise</option>
+                <option>Institution</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="message">Besoins spécifiques ou message</label>
+              <textarea id="message" name="message" placeholder="Précisez vos attentes, besoins logistiques ou questions particulières."></textarea>
+            </div>
+          </div>
+
+          <label class="checkbox" for="consent">
+            <input id="consent" name="consent" type="checkbox" value="yes" required>
+            <span>J'accepte d'être contacté pour la confirmation de mon inscription et je comprends que mes informations seront utilisées uniquement pour la gestion de cette activité.</span>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" id="submitButton" type="submit">
+              <i class="fas fa-paper-plane"></i>
+              <span data-label>Envoyer l'inscription</span>
+            </button>
+
+            <button class="btn btn-secondary" type="button" id="whatsappButton">
+              <i class="fab fa-whatsapp"></i>
+              <span>Pré-inscription WhatsApp</span>
+            </button>
+          </div>
+
+          <p class="form-note">
+            Réponse en général sous 24h. Si votre événement est urgent, appelez-nous directement.
+          </p>
+
+          <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="aside-section">
+          <aside class="panel aside-card">
+            <p class="kicker">Comment ça marche</p>
+            <h3>Une inscription simple, rapide et claire</h3>
+            <p>
+              Nous utilisons ces informations pour enregistrer chaque participant et éviter toute confusion
+              au moment de l'accueil.
+            </p>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-step">1</div>
+                <div>
+                  <strong>Vous remplissez le formulaire</strong>
+                  <span>Renseignez les champs nécessaires pour l'événement choisi.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-step">2</div>
+                <div>
+                  <strong>Nous confirmons votre inscription</strong>
+                  <span>Nous vous recontactons par WhatsApp, appel ou e-mail.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-step">3</div>
+                <div>
+                  <strong>Vous recevez les détails pratiques</strong>
+                  <span>Lieu, heure, consignes et informations utiles avant l'activité.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <aside class="panel aside-card">
+            <p class="kicker">Contacts rapides</p>
+            <h3>Besoin d'une réponse immédiate ?</h3>
+            <div class="small-links">
+              <a class="small-link" href="tel:+243834715292">
+                <i class="fas fa-phone"></i>
+                <span>+243 834 715 292</span>
+              </a>
+              <a class="small-link" href="mailto:contact@akilimalicoaching.com">
+                <i class="fas fa-envelope"></i>
+                <span>contact@akilimalicoaching.com</span>
+              </a>
+              <a class="small-link" href="https://wa.me/243834715292" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <span>Nous écrire sur WhatsApp</span>
+              </a>
+              <a class="small-link" href="index.html">
+                <i class="fas fa-house"></i>
+                <span>Retour à la page d'accueil</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-note">
+    © 2026 AKILIMALI KASIDIKA LEBON · Formulaire d'inscription pour activités en présentiel
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const statusBox = document.getElementById('formStatus');
+    const submitButton = document.getElementById('submitButton');
+    const submitLabel = submitButton.querySelector('[data-label]');
+    const activitySelect = document.getElementById('activity_name');
+    const eventThemeInput = document.getElementById('event_theme');
+    const venueInput = document.getElementById('venue');
+    const eventFormatInput = document.getElementById('event_format');
+    const contributionInput = document.getElementById('contribution');
+    const locationInput = document.getElementById('location');
+    const summaryTitle = document.getElementById('summaryTitle');
+    const summarySubtitle = document.getElementById('summarySubtitle');
+    const summaryTheme = document.getElementById('summaryTheme');
+    const summaryVenue = document.getElementById('summaryVenue');
+    const summaryContribution = document.getElementById('summaryContribution');
+    const summaryFormat = document.getElementById('summaryFormat');
+    const summaryTag = document.getElementById('summaryTag');
+    const summaryNote = document.getElementById('summaryNote');
+    const whatsappButton = document.getElementById('whatsappButton');
+
+    function cleanValue(value, fallback = 'Non renseigné') {
+      const text = String(value ?? '').trim();
+      return text || fallback;
+    }
+
+    function syncActivityDetails() {
+      const selected = activitySelect?.selectedOptions?.[0];
+      if (!selected || !selected.value) {
+        eventThemeInput.value = '';
+        venueInput.value = '';
+        eventFormatInput.value = '';
+        contributionInput.value = '';
+        if (!locationInput.dataset.manual || locationInput.dataset.manual !== '1') {
+          locationInput.value = '';
+        }
+
+        summaryTitle.textContent = 'Choisissez une activité';
+        summarySubtitle.textContent = 'Les détails du programme apparaîtront ici automatiquement.';
+        summaryTheme.textContent = 'Sélectionnez une activité pour voir son thème.';
+        summaryVenue.textContent = 'Hilton, Pullman ou Fleuve Congo selon le programme.';
+        summaryContribution.textContent = '50 USD à 250 USD selon la formule choisie.';
+        summaryFormat.textContent = 'Dîner, petit-déjeuner, masterclass, conférence ou pack.';
+        summaryTag.textContent = 'Programme 2026';
+        summaryNote.textContent = 'Plus de 300 participants ciblés, plus de 100 entreprises représentées et plus de 50 partenariats potentiels.';
+        return;
+      }
+
+      const theme = selected.dataset.theme || '';
+      const venue = selected.dataset.venue || '';
+      const contribution = selected.dataset.contribution || '';
+      const format = selected.dataset.format || '';
+
+      eventThemeInput.value = theme;
+      venueInput.value = venue;
+      eventFormatInput.value = format;
+      contributionInput.value = contribution;
+
+      if (!locationInput.dataset.manual || locationInput.dataset.manual !== '1' || !locationInput.value.trim()) {
+        locationInput.value = venue;
+      }
+
+      summaryTitle.textContent = selected.value;
+      summarySubtitle.textContent = `${format} · ${venue}`;
+      summaryTheme.textContent = theme;
+      summaryVenue.textContent = venue;
+      summaryContribution.textContent = contribution;
+      summaryFormat.textContent = format;
+      summaryTag.textContent = contribution;
+      summaryNote.textContent = 'Pack exécutif : 250 USD. Offre spéciale pack complet : 200 USD.';
+    }
+
+    activitySelect.addEventListener('change', () => {
+      locationInput.dataset.manual = '0';
+      syncActivityDetails();
+    });
+
+    locationInput.addEventListener('input', () => {
+      locationInput.dataset.manual = '1';
+    });
+
+    function buildWhatsappMessage() {
+      const data = new FormData(form);
+      const lines = [
+        "Bonjour, je souhaite m'inscrire à une activité en présentiel.",
+        `Nom complet : ${cleanValue(data.get('full_name'))}`,
+        `Téléphone / WhatsApp : ${cleanValue(data.get('phone'))}`,
+        `E-mail : ${cleanValue(data.get('email'))}`,
+        `Organisation : ${cleanValue(data.get('organization'))}`,
+        `Activité choisie : ${cleanValue(data.get('activity_name'))}`,
+        `Thème : ${cleanValue(data.get('event_theme'))}`,
+        `Lieu officiel : ${cleanValue(data.get('venue'))}`,
+        `Format : ${cleanValue(data.get('event_format'))}`,
+        `Contribution : ${cleanValue(data.get('contribution'))}`,
+        `Date : ${cleanValue(data.get('event_date'))}`,
+        `Heure : ${cleanValue(data.get('event_time'))}`,
+        `Ville / précision du lieu : ${cleanValue(data.get('location'))}`,
+        `Participants : ${cleanValue(data.get('participants'))}`,
+        `Catégorie : ${cleanValue(data.get('category'))}`,
+        `Message : ${cleanValue(data.get('message'))}`
+      ];
+
+      return lines.join('\n');
+    }
+
+    whatsappButton.addEventListener('click', () => {
+      const message = buildWhatsappMessage();
+      const url = `https://wa.me/243834715292?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+      submitButton.disabled = true;
+
+      const originalLabel = submitLabel.textContent;
+      submitLabel.textContent = 'Envoi en cours...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('La réponse du service de formulaire est invalide.');
+        }
+
+        form.reset();
+        locationInput.dataset.manual = '0';
+        syncActivityDetails();
+        statusBox.textContent = "Votre inscription a bien été envoyée. Nous vous recontactons rapidement pour la confirmation.";
+        statusBox.classList.add('show', 'success');
+      } catch (error) {
+        statusBox.textContent = "Impossible d'envoyer le formulaire pour le moment. Vous pouvez utiliser le bouton WhatsApp ci-dessus ou réessayer un peu plus tard.";
+        statusBox.classList.add('show', 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitLabel.textContent = originalLabel;
+      }
+    });
+
+    syncActivityDetails();
+  </script>
+</body>
+</html>

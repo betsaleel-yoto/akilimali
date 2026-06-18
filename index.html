@@ -1484,41 +1484,45 @@
 
     .clients-marquee-wrapper {
       overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
     }
     .clients-track {
       display: flex;
-      gap: 2rem;
+      gap: 1.25rem;
       align-items: center;
-      animation: clientsScroll 30s linear infinite;
+      animation: clientsScroll 42s linear infinite;
       width: max-content;
+      will-change: transform;
     }
     .clients-track:hover { animation-play-state: paused; }
     .client-logo-wrap {
-      width: 140px; height: 80px;
-      background: var(--navy-card);
-      border: 1px solid var(--navy-border);
-      border-radius: 4px;
+      width: clamp(112px, 9vw, 128px);
+      height: clamp(64px, 5vw, 74px);
+      background: rgba(247, 242, 232, 0.96);
+      border: 1px solid rgba(201, 168, 76, 0.16);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       overflow: hidden;
       transition: all 0.4s;
-      padding: 0.75rem;
+      padding: 0.6rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
     }
     .client-logo-wrap:hover {
       border-color: rgba(201,168,76,0.4);
-      background: rgba(201,168,76,0.05);
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-2px) scale(1.02);
     }
     .client-logo-wrap img {
       max-width: 100%; max-height: 100%;
       object-fit: contain;
-      filter: grayscale(80%) brightness(1.2);
+      filter: none;
       transition: filter 0.4s;
     }
-    .client-logo-wrap:hover img { filter: grayscale(0%) brightness(1); }
+    .client-logo-wrap:hover img { filter: none; }
 
     /* ══════════════════════════════════════
        TESTIMONIALS
@@ -2781,10 +2785,10 @@
       #clients { padding: 5rem 0; }
       .clients-marquee-wrapper {
         overflow: hidden;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-        mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
       }
-      .client-logo-wrap { width: 110px; height: 64px; }
+      .client-logo-wrap { width: 104px; height: 62px; }
 
       /* ── Testimonials ── */
       #testimonials { padding: 5rem 0; }
@@ -2803,6 +2807,7 @@
         width: 100%;
       }
       .contact-actions .btn-primary { width: 100%; text-align: center; }
+      .contact-actions .btn-ghost { width: 100%; justify-content: center; }
       .section-heading { font-size: clamp(2rem, 9vw, 3rem); }
 
       /* ── Newsletter ── */
@@ -3670,6 +3675,8 @@
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1751402971/IMG-20250701-WA0003_c4ms5z.jpg" alt="Client"></div>
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1751881873/IMG-20250705-WA0000_t2zapd.jpg" alt="Client"></div>
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1752232837/IMG-20250708-WA0000_uhfobj.jpg" alt="Client"></div>
+        <div class="client-logo-wrap"><img src="./WhatsApp Image 2026-06-15 at 13.30.05.jpeg" alt="Client"></div>
+        <div class="client-logo-wrap"><img src="./WhatsApp Image 2026-06-15 at 13.36.10.jpeg" alt="Client"></div>
         <!-- Duplicate set for seamless loop -->
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1747735224/c80xvj1bie4u8nv9ytkp.jpg" alt="Client"></div>
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1751402973/IMG-20250701-WA0005_wumwx6.jpg" alt="Client"></div>
@@ -3686,6 +3693,8 @@
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1751402971/IMG-20250701-WA0003_c4ms5z.jpg" alt="Client"></div>
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1751881873/IMG-20250705-WA0000_t2zapd.jpg" alt="Client"></div>
         <div class="client-logo-wrap"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1752232837/IMG-20250708-WA0000_uhfobj.jpg" alt="Client"></div>
+        <div class="client-logo-wrap"><img src="./WhatsApp Image 2026-06-15 at 13.30.05.jpeg" alt="Client"></div>
+        <div class="client-logo-wrap"><img src="./WhatsApp Image 2026-06-15 at 13.36.10.jpeg" alt="Client"></div>
       </div>
     </div>
   </section>
@@ -3749,6 +3758,19 @@
           <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
           <video playsinline controls>
             <source src="./WhatsApp Video 2026-03-30 at 13.10.01.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card reveal reveal-delay-3">
+          <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
+          <video playsinline controls>
+            <source src="./WhatsApp Video 2026-06-14 at 23.37.57.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="video-card reveal reveal-delay-3">
+          <div class="video-card-overlay"><span class="video-tag">Témoignage</span></div>
+          <video playsinline controls>
+            <source src="./WhatsApp Video 2026-06-14 at 23.38.07.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -3880,6 +3902,10 @@
         <div class="contact-actions reveal reveal-delay-3">
           <a href="#contact" class="btn-primary" id="open-popup">
             <span><i class="fas fa-calendar-alt" style="margin-right:.6rem;"></i>Réserver maintenant</span>
+          </a>
+          <a href="formulaireconf.html" class="btn-ghost">
+            <span class="btn-ghost-icon"><i class="fas fa-clipboard-list"></i></span>
+            <span>Inscription présentiel</span>
           </a>
           <a href="/cdn-cgi/l/email-protection#8ae9e5e4feebe9fecaebe1e3e6e3e7ebe6e3e9e5e4f9ffe6fee3e4eda4e9e5e7" class="btn-ghost">
             <span class="btn-ghost-icon"><i class="fas fa-envelope"></i></span>
